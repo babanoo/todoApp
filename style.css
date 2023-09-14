@@ -1,0 +1,160 @@
+body {
+  background-image: url(./image/lakeside-green-nature-background-whzt54foh6max07b.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: Poppins;
+}
+header{
+ background-image: linear-gradient(to right, #823fa1 , #6248e7);
+}
+input {
+ outline: none;
+}
+.container {
+ max-width: 1280px;
+}
+.hover-li:hover {
+ background-color: rgb(235, 233, 233);
+}
+.task-input::placeholder {
+ color: rgb(0,191,255);
+ font-weight: 500;
+ font-size: 18px;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?d1uy9r');
+  src:  url('fonts/icomoon.eot?d1uy9r#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?d1uy9r') format('truetype'),
+    url('fonts/icomoon.woff?d1uy9r') format('woff'),
+    url('fonts/icomoon.svg?d1uy9r#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-sun2:before {
+  content: "\e901";
+  color: rgb(30,144,255);
+  font-size: 20px;
+}
+.icon-home3:before {
+  content: "\e902";
+  color: rgb(30,144,255);
+  font-size: 20px;
+}
+.icon-calendar:before {
+  content: "\e953";
+  color: rgb(30,144,255);
+  font-size: 15px;
+}
+.icon-search:before {
+  content: "\e986";
+  color: rgb(235, 233, 233);
+  font-size: 20px;
+}
+.icon-cancel-circle:before {
+  content: "\ea0d";
+  font-size: 30px;
+  color: #fff;
+}
+.icon-plus:before {
+  content: "\f067";
+  color: rgb(30,144,255);
+  font-size: 15px;
+}
+.icon-star-o:before {
+  content: "\f006";
+  color: rgb(0,191,255);
+  font-size: 20px;
+}
+.icon-trash-o:before {
+  content: "\f014";
+  color: red;
+}
+.icon-circle-thin:before {
+  content: "\f1db";
+}
+.search {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  box-shadow: 0 4px 24px hsla(222, 68%, 12%, 0.1);
+  border-radius: 4rem;
+  padding: 10px;
+  overflow: hidden;
+  transition: width 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+.search__input {
+  border: none;
+  outline: none;
+  width: calc(100% - 64px);
+  height: 100%;
+  border-radius: 4rem;
+  padding-left: 14px;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.5s;
+}
+.search__input:-webkit-autofill {
+  box-shadow: 0 0 0 100px #fff inset;
+}
+.search__button {
+  width: 56px;
+  height: 56px;
+  background-image: linear-gradient(to right, #432054 , #6b57ce);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+.search__icon, .search__close {
+  color: #fff;
+  font-size: 1.5rem;
+  position: absolute;
+  transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
+}
+.search__close {
+  opacity: 0;
+}
+
+/* Search animated */
+.show-search {
+  width: 400px;
+}
+.show-search .search__input {
+  opacity: 1;
+  pointer-events: initial;
+}
+.show-search .search__button {
+  transform: rotate(90deg);
+}
+.show-search .search__icon {
+  opacity: 0;
+}
+.show-search .search__close {
+  opacity: 1;
+}
