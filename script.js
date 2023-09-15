@@ -2,6 +2,8 @@
 const input = document.getElementById("inputTask");
 const submit = document.getElementById("add");
 const tasksDiv = document.getElementById("tasks");
+const checked = document.getElementsByClassName("done");
+const trashButton = document.getElementsByClassName("icon-trash-o");
 let arrayOfTasks = [];
 //trigger get data from local storage function
 getDataFromLocalStorage();
@@ -16,30 +18,17 @@ submit.onclick = function () {
     input.value = "";
   }
 };
-
 // Click On Task Element
 tasksDiv.addEventListener("click", (e) => {
-  // Delete Button
-  const confirmdelete = confirm("Are You Sure?");
-  if (confirmdelete) {
-    if (e.target.classList.contains("icon-trash-o")) {
-      // Remove Element From Localstorage
-      deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
-      // Remove Element From Page
-      e.target.parentElement.remove();
-    }
-  } else {
-    e.preventDefault();
-  }
   // Task Elements
   if (e.target.classList.contains("task")) {
     // Toggle Completed For The Task
-    toggleStatusTaskWith(e.target.getAttribute("data-id"));
+
     // Toggle Done Class
     e.target.classList.toggle("done");
   }
 });
-
+console.log(tasksDiv);
 function addTaskToArray(tastText) {
   const task = {
     id: Date.now(),
@@ -72,8 +61,24 @@ function addElementsToPageFrom(arrayOfTasks) {
     checkedButton.className = "icon-circle-thin";
     div.prepend(checkedButton);
     tasksDiv.appendChild(div);
-    console.log(div);
   });
+}
+// Delete Button
+let i;
+for (i = 0; i < trashButton.length; i++) {
+  trashButton[i].onclick = function () {
+    const confirmdelete = confirm("Are You Sure?");
+    if (confirmdelete) {
+      if (e.target.classList.contains("icon-trash-o")) {
+        // Remove Element From Localstorage
+        deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
+        // Remove Element From Page
+        e.target.parentElement.remove();
+      }
+    } else {
+      e.preventDefault();
+    }
+  };
 }
 function addDataToLocalStorageFrom(arrayOfTasks) {
   window.localStorage.setItem("tasks", JSON.stringify(arrayOfTasks));
