@@ -20,13 +20,17 @@ submit.onclick = function () {
 // Click On Task Element
 tasksDiv.addEventListener("click", (e) => {
   // Delete Button
-  if (e.target.classList.contains("icon-trash-o")) {
-    // Remove Task From Local Storage
-    deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
-    // Remove Element From Page
-    e.target.parentElement.confirm("Are you sure to delete this task").remove();
+  const confirmdelete = confirm("Are You Sure?");
+  if (confirmdelete) {
+    if (e.target.classList.contains("icon-trash-o")) {
+      // Remove Element From Localstorage
+      deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
+      // Remove Element From Page
+      e.target.parentElement.remove();
+    }
+  } else {
+    e.preventDefault();
   }
-
   // Task Elements
   if (e.target.classList.contains("task")) {
     // Toggle Completed For The Task
