@@ -5,45 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ToDo App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./style.css">
-
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <main class="container">
-     <section class="d-flex bg-body mt-5 px-0">
+     <section class="d-flex bg-body my-5 px-0">
        <aside class="pt-2">
         <ul class="border-top">
-            <li class="list-group-item py-3  h5 "> <a href="#" class="nav-link hover-li"><i class="icon-star-o pe-2"></i>Important</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link hover-li"><i class="icon-sun2 pe-2"></i>My Day</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link  disabled"><i class="icon-star-o pe-2"></i>Important</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link disabled"><i class="icon-calendar pe-2"></i>Planned</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link  disabled"><i class="icon-home3 pe-2"></i>Tasks</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link  disabled"><i class="icon-calendar pe-2"></i>Planned</a></li>
-            <li class="list-group-item py-3 h5"> <a href="#" class="nav-link  disabled"><i class="icon-home3 pe-2"></i>Tasks</a></li>
+            <li class="list-group-item py-3 h5 d-flex"><a href="#" class="nav-link hover-li"><i class="bi bi-star pe-2 pb-2 text-primary"></i>Important</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link hover-li"><i class="bi bi-brightness-high pe-2 text-primary"></i>My Day</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-star pe-2"></i>Important</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link disabled text-secondary"><i class="bi bi-calendar4-week pe-2"></i>Planned</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-house-door"></i>Tasks</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-calendar4-week pe-2"></i>Planned</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-house-door"></i>Tasks</a></li>
         </ul> 
     </aside>
-       <section class="border-start d-flex flex-column justify-content-between">
+       <section class="border-start flex-grow-1 d-flex flex-column justify-content-between">
         <header class="d-flex justify-content-between pt-5">
             <h1 class="text-white">My Day</h1>
             <form  class="search" id="search-bar">
                 <input type="search" placeholder="Type Here..." name="q" class="search__input">
                 <div class="search__button" id="search-button">
-                    <i class="icon-search search__icon"></i>
-                    <i class="icon-cancel-circle search__close"></i>
+                    <i class="bi bi-search search__icon d-flex align-items-center"></i>
+                    <i class="bi bi-x-circle search__close d-flex align-items-center"></i>
                 </div>
             </form>
         </header>
-        <div id="tasks" class="d-flex flex-column justify-content-between"></div>
-        <div class="form-task d-flex align-items-center pb-4">
-            <button class="icon-plus px-3 bg-body border-0" id="add"></button>
+        <div id="tasks" class="d-flex flex-column px-3"></div>
+        <div class="form-task py-4 d-flex align-items-center">
+            <button class="bi bi-plus-circle text-info px-3 bg-body border-0" id="add"></button>
             <input type="text" placeholder="Add a Task" class="border-0 task-input bg-body" id="inputTask">
         </div>
        </section>
     </section>
     </main>
-  <script src="script.js"></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
 const input = document.getElementById("inputTask");
 const submit = document.getElementById("add");
 const tasksDiv = document.getElementById("tasks");
-const checked = document.getElementsByClassName("done");
 const trashButton = document.getElementsByClassName("icon-trash-o");
+const div = document.getElementsByClassName("task");
 let arrayOfTasks = [];
 //trigger get data from local storage function
 getDataFromLocalStorage();
@@ -19,16 +19,30 @@ submit.onclick = function () {
   }
 };
 // Click On Task Element
-tasksDiv.addEventListener("click", (e) => {
-  // Task Elements
-  if (e.target.classList.contains("task")) {
-    // Toggle Completed For The Task
+tasksDiv.addEventListener("click", (eo) => {
+  if (eo.target.childNodes[0].completed) {
+    eo.classList.add("text-decoration-line-through");
+  }
 
-    // Toggle Done Class
-    e.target.classList.toggle("done");
+  if (eo.target.className == "bi bi-star") {
+    eo.target.classList.toggle("text-primary");
+  }
+  if (eo.target.className == "bi bi-trash") {
+    //delete tasks
+    const confirmdelete = confirm("Are You Sure?");
+    if (confirmdelete) {
+      // Remove Task From Local Storage
+      deleteTaskWith(
+        eo.target.parentElement.parentElement.getAttribute("data-id")
+      );
+      //remove task From page
+      eo.target.parentElement.parentElement.remove();
+    }
+  } else {
+    eo.preventDefault();
   }
 });
-console.log(tasksDiv);
+
 function addTaskToArray(tastText) {
   const task = {
     id: Date.now(),
@@ -44,41 +58,38 @@ function addElementsToPageFrom(arrayOfTasks) {
   tasksDiv.innerHTML = "";
   arrayOfTasks.forEach((task) => {
     const div = document.createElement("div");
-    div.className = "task";
-    // Check If Task is Done
-    if (task.completed) {
-      div.className = "task done";
-    }
+    div.className = "done";
+    div.classList.add(
+      "pb-3",
+      "my-3",
+      "d-flex",
+      "align-items-start",
+      "justify-content-between",
+      "border-bottom"
+    );
+    const childOne = document.createElement("div");
+    const childTwo = document.createElement("div");
+    // If Task is Done
+    //if (task.completed) {
+    // div.classList.add("done");
+    //}
+
     div.setAttribute("data-id", task.id);
-    div.appendChild(document.createTextNode(task.title));
+    childOne.appendChild(document.createTextNode(task.title));
     const trashButton = document.createElement("span");
-    trashButton.className = "icon-trash-o";
-    div.appendChild(trashButton);
+    trashButton.className = "bi bi-trash";
+    childTwo.appendChild(trashButton);
     const startButton = document.createElement("span");
-    startButton.className = "icon-star-o";
-    div.appendChild(startButton);
+    startButton.className = "bi bi-star";
+    childTwo.appendChild(startButton);
     const checkedButton = document.createElement("span");
-    checkedButton.className = "icon-circle-thin";
-    div.prepend(checkedButton);
+    checkedButton.className = "bi bi-circle";
+    //checkedButton.classList.add("pe-2", "text-primary");
+    childOne.prepend(checkedButton);
+    div.appendChild(childOne);
+    div.appendChild(childTwo);
     tasksDiv.appendChild(div);
   });
-}
-// Delete Button
-let i;
-for (i = 0; i < trashButton.length; i++) {
-  trashButton[i].onclick = function () {
-    const confirmdelete = confirm("Are You Sure?");
-    if (confirmdelete) {
-      if (e.target.classList.contains("icon-trash-o")) {
-        // Remove Element From Localstorage
-        deleteTaskWith(e.target.parentElement.getAttribute("data-id"));
-        // Remove Element From Page
-        e.target.parentElement.remove();
-      }
-    } else {
-      e.preventDefault();
-    }
-  };
 }
 function addDataToLocalStorageFrom(arrayOfTasks) {
   window.localStorage.setItem("tasks", JSON.stringify(arrayOfTasks));
