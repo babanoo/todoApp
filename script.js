@@ -1,6 +1,6 @@
 //TASKS
 const input = document.getElementById("inputTask");
-const submit = document.getElementById("add");
+//const submit = document.getElementById("add");
 const tasksDiv = document.getElementById("tasks");
 const trashButton = document.getElementsByClassName("icon-trash-o");
 const div = document.getElementsByClassName("task");
@@ -12,18 +12,15 @@ if (localStorage.getItem("tasks")) {
   arrayOfTasks = JSON.parse(localStorage.getItem("tasks"));
 }
 //add tasks
-submit.onclick = function () {
-  if (input.value !== "") {
-    addTaskToArray(input.value);
-    input.value = "";
+input.onclick = function () {
+  const promptMsgTask = prompt("Enter Task");
+  if (promptMsgTask !== null) {
+    addTaskToArray(promptMsgTask + input.value);
+    promptMsgTask += input.value;
   }
 };
 // Click On Task Element
 tasksDiv.addEventListener("click", (eo) => {
-  if (eo.target.childNodes[0].completed) {
-    eo.classList.add("text-decoration-line-through");
-  }
-
   if (eo.target.className == "bi bi-star") {
     eo.target.classList.toggle("text-primary");
   }
@@ -58,7 +55,7 @@ function addElementsToPageFrom(arrayOfTasks) {
   tasksDiv.innerHTML = "";
   arrayOfTasks.forEach((task) => {
     const div = document.createElement("div");
-    div.className = "done";
+    div.className = "task";
     div.classList.add(
       "pb-3",
       "my-3",
@@ -67,13 +64,12 @@ function addElementsToPageFrom(arrayOfTasks) {
       "justify-content-between",
       "border-bottom"
     );
+    // Check If Task is Done
+    if (task.completed) {
+      div.className = "task text-decoration-line-through";
+    }
     const childOne = document.createElement("div");
     const childTwo = document.createElement("div");
-    // If Task is Done
-    //if (task.completed) {
-    // div.classList.add("done");
-    //}
-
     div.setAttribute("data-id", task.id);
     childOne.appendChild(document.createTextNode(task.title));
     const trashButton = document.createElement("span");
