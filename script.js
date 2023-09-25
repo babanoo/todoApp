@@ -1,9 +1,7 @@
 //TASKS
 const input = document.getElementById("inputTask");
-//const submit = document.getElementById("add");
 const tasksDiv = document.getElementById("tasks");
 const trashButton = document.getElementsByClassName("icon-trash-o");
-const div = document.getElementsByClassName("task");
 let arrayOfTasks = [];
 //trigger get data from local storage function
 getDataFromLocalStorage();
@@ -19,11 +17,9 @@ input.onclick = function () {
     promptMsgTask += input.value;
   }
 };
+
 // Click On Task Element
 tasksDiv.addEventListener("click", (eo) => {
-  if (eo.target.className == "bi bi-star") {
-    eo.target.classList.toggle("text-primary");
-  }
   if (eo.target.className == "bi bi-trash") {
     //delete tasks
     const confirmdelete = confirm("Are You Sure?");
@@ -64,10 +60,14 @@ function addElementsToPageFrom(arrayOfTasks) {
       "justify-content-between",
       "border-bottom"
     );
-    // Check If Task is Done
+    //complete task
     if (task.completed) {
-      div.className = "task text-decoration-line-through";
+      div.classList.add("done");
     }
+    div.addEventListener("click", (eo) => {
+      eo.target.classList.toggle("done");
+      checkedButton.classList.toggle("bi-check-circle-fill");
+    });
     const childOne = document.createElement("div");
     const childTwo = document.createElement("div");
     div.setAttribute("data-id", task.id);
@@ -77,14 +77,22 @@ function addElementsToPageFrom(arrayOfTasks) {
     childTwo.appendChild(trashButton);
     const startButton = document.createElement("span");
     startButton.className = "bi bi-star";
+    startButton.addEventListener("click", (eo) => {
+      if (eo.target.className == "bi bi-star") {
+        eo.target.classList.replace("bi-star", "bi-star-fill");
+        eo.target.classList.add("text-primary");
+      } else {
+        eo.target.className = "bi bi-star";
+        eo.target.classList.remove("text-primary");
+      }
+    });
     childTwo.appendChild(startButton);
     const checkedButton = document.createElement("span");
     checkedButton.className = "bi bi-circle";
-    //checkedButton.classList.add("pe-2", "text-primary");
     childOne.prepend(checkedButton);
     div.appendChild(childOne);
     div.appendChild(childTwo);
-    tasksDiv.appendChild(div);
+    tasksDiv.prepend(div);
   });
 }
 function addDataToLocalStorageFrom(arrayOfTasks) {
