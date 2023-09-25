@@ -53,8 +53,7 @@ function addElementsToPageFrom(arrayOfTasks) {
     const div = document.createElement("div");
     div.className = "task";
     div.classList.add(
-      "pb-3",
-      "my-3",
+      "py-3",
       "d-flex",
       "align-items-start",
       "justify-content-between",
@@ -64,11 +63,11 @@ function addElementsToPageFrom(arrayOfTasks) {
     if (task.completed) {
       div.classList.add("done");
     }
-    div.addEventListener("click", (eo) => {
-      eo.target.classList.toggle("done");
-      checkedButton.classList.toggle("bi-check-circle-fill");
-    });
+
     const childOne = document.createElement("div");
+    childOne.addEventListener("click", (eo) => {
+      eo.target.classList.toggle("done");
+    });
     const childTwo = document.createElement("div");
     div.setAttribute("data-id", task.id);
     childOne.appendChild(document.createTextNode(task.title));

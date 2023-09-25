@@ -135,3 +135,17 @@ input {
   text-decoration: line-through;
   color: dimgray;
 }
+.task {
+  cursor: pointer;
+}
+.bi {
+  font-size: 20px;
+  padding-right: 15px;
+}
+.bi-trash {
+  color: #fff;
+  transition: all 1s;
+}
+.bi-trash:hover {
+  color: rgba(255, 0, 0, 0.802);
+}
