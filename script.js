@@ -20,6 +20,13 @@ input.onclick = function () {
 
 // Click On Task Element
 tasksDiv.addEventListener("click", (eo) => {
+  if (eo.target.classList.contains("task")) {
+    eo.target.classList.remove("task");
+    eo.target.classList.toggle("done");
+  } else {
+    eo.target.classList.add("task");
+    eo.target.classList.remove("done");
+  }
   if (eo.target.className == "bi bi-trash") {
     //delete tasks
     const confirmdelete = confirm("Are You Sure?");
@@ -61,13 +68,10 @@ function addElementsToPageFrom(arrayOfTasks) {
     );
     //complete task
     if (task.completed) {
-      div.classList.add("done");
+      div.className = "done";
     }
-
     const childOne = document.createElement("div");
-    childOne.addEventListener("click", (eo) => {
-      eo.target.classList.toggle("done");
-    });
+    childOne.classList.add("ps-5");
     const childTwo = document.createElement("div");
     div.setAttribute("data-id", task.id);
     childOne.appendChild(document.createTextNode(task.title));
@@ -86,9 +90,9 @@ function addElementsToPageFrom(arrayOfTasks) {
       }
     });
     childTwo.appendChild(startButton);
-    const checkedButton = document.createElement("span");
-    checkedButton.className = "bi bi-circle";
-    childOne.prepend(checkedButton);
+    // const checkedButton = document.createElement("span");
+    ///checkedButton.className = "checkCircle";
+    //childOne.prepend(checkedButton);
     div.appendChild(childOne);
     div.appendChild(childTwo);
     tasksDiv.prepend(div);

@@ -106,7 +106,6 @@ input {
 }
 .search__icon, .search__close {
   color: #fff;
-  font-size: 1.5rem;
   position: absolute;
   transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
@@ -134,18 +133,60 @@ input {
 .done {
   text-decoration: line-through;
   color: dimgray;
+  font-size: 15px;
+  position: relative;
+}
+.done::after {
+  content: '';
+  position: absolute;
+  border-color: rgb(255, 255, 255);
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 33%;
+  left: 3px;
+  transform: rotate(45deg);
+  height: 13px;
+  width: 6px;
+}
+.done::before {
+  content: "";
+    position: absolute;
+    left: 0;
+    right: 10%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgb(0, 0, 255);
+    transform: translateX(-5px);
 }
 .task {
   cursor: pointer;
+  position: relative;
 }
+.task:hover .bi-trash {
+  color: rgba(255, 0, 0, 0.802);
+}
+.task::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    right: 100%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border-style: solid;
+     border-color: rgba(0, 0, 0, 0.665);
+    background-color: rgb(255, 255, 255);
+    transform: translateX(-5px);
+}
+
 .bi {
   font-size: 20px;
   padding-right: 15px;
 }
 .bi-trash {
   color: #fff;
-  transition: all 1s;
+  transition: all 0.6s;
 }
-.bi-trash:hover {
-  color: rgba(255, 0, 0, 0.802);
-}
+ 
