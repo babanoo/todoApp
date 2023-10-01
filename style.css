@@ -165,7 +165,7 @@ input {
   border-color: rgb(255, 255, 255);
   border-style: solid;
   border-width: 0 2px 2px 0;
-  top: 33%;
+  top: 30%;
   left: 3px;
   transform: rotate(45deg);
   height: 13px;
@@ -185,11 +185,16 @@ input {
 }
 
 .bi {
-  font-size: 20px;
+  font-size: 25px;
   padding-right: 15px;
 }
 .bi-trash {
   color: #fff;
   transition: all 0.6s;
 }
- 
+.blue  {
+  color: rgb(0, 170, 255);
+}
+.purple {
+  color: rgb(191, 64, 191);
+}

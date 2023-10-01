@@ -17,8 +17,8 @@
      <section class="d-flex bg-body my-5 px-0">
        <aside class="pt-2">
         <ul class="border-top">
-            <li class="list-group-item py-3 h5 d-flex"><a href="#" class="nav-link hover-li"><i class="bi bi-star pe-2 pb-2 text-primary"></i>Important</a></li>
-            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link hover-li"><i class="bi bi-brightness-high pe-2 text-primary"></i>My Day</a></li>
+            <li class="list-group-item py-3 h5 d-flex"><a href="#" class="nav-link hover-li" id="import"><i class="bi bi-star pe-2 pb-2 blue" id = "importIcon"></i>Important</a></li>
+            <li class="list-group-item py-3 h5">  <a href="#" class="nav-link hover-li" id="myDay"><i class="bi bi-brightness-high pe-2 blue" id="dayIcon"></i>My Day</a></li>
             <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-star pe-2"></i>Important</a></li>
             <li class="list-group-item py-3 h5">  <a href="#" class="nav-link disabled text-secondary"><i class="bi bi-calendar4-week pe-2"></i>Planned</a></li>
             <li class="list-group-item py-3 h5">  <a href="#" class="nav-link  disabled text-secondary"><i class="bi bi-house-door"></i>Tasks</a></li>
@@ -28,8 +28,8 @@
     </aside>
        <section class="border-start flex-grow-1 d-flex flex-column justify-content-between">
         <header class="d-flex justify-content-between pt-5">
-            <h1 class="text-white">My Day</h1>
-            <form  class="search" id="search-bar">
+            <h1 class="text-white ps-4" id="myHead"></h1>
+            <form  class="search mt-3" id="search-bar">
                 <input type="search" placeholder="Type Here..." name="q" class="search__input">
                 <div class="search__button" id="search-button">
                     <i class="bi bi-search search__icon d-flex align-items-center pe-0"></i>

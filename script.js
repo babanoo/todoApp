@@ -4,8 +4,8 @@ const tasksDiv = document.getElementById("tasks");
 const trashButton = document.getElementsByClassName("icon-trash-o");
 let arrayOfTasks = [];
 // Check if Theres Tasks In Local Storage
-if (localStorage.getItem("myTask")) {
-  arrayOfTasks = JSON.parse(localStorage.getItem("myTask"));
+if (localStorage.getItem("addTask")) {
+  arrayOfTasks = JSON.parse(localStorage.getItem("addTask"));
 }
 
 // Trigger Get Data From Local Storage Function
@@ -38,7 +38,6 @@ tasksDiv.addEventListener("click", (eo) => {
     }
   }
 });
-
 function addTaskToArray(tastText) {
   const task = {
     id: Date.now(),
@@ -95,22 +94,18 @@ function addElementsToPageFrom(arrayOfTasks) {
 }
 //add data to local storage
 function addDataToLocalStorageFrom(arrayOfTasks) {
-  window.localStorage.setItem("myTask", JSON.stringify(arrayOfTasks));
+  window.localStorage.setItem("addTask", JSON.stringify(arrayOfTasks));
 }
 
 function getDataFromLocalStorage() {
-  let data = window.localStorage.getItem("myTask");
+  let data = window.localStorage.getItem("addTask");
   if (data) {
-    let myTask = JSON.parse(data);
-    addElementsToPageFrom(myTask);
+    let addTask = JSON.parse(data);
+    addElementsToPageFrom(addTask);
   }
 }
 
 function deleteTaskWith(taskId) {
-  // For Explain Only
-  // for (let i = 0; i < arrayOfTasks.length; i++) {
-  //   console.log(`${arrayOfTasks[i].id} === ${taskId}`);
-  // }
   arrayOfTasks = arrayOfTasks.filter((task) => task.id != taskId);
   addDataToLocalStorageFrom(arrayOfTasks);
 }
@@ -124,6 +119,47 @@ function toggleStatusTaskWith(taskId) {
   }
   addDataToLocalStorageFrom(arrayOfTasks);
 }
+//sideBar
+const important = document.getElementById("import");
+const head = document.getElementById("myHead");
+const day = document.getElementById("myDay");
+const star = document.getElementById("importIcon");
+const sun = document.getElementById("dayIcon");
+
+important.addEventListener("click", (eo) => {
+  head.innerHTML = "Important";
+  //show todays
+  const date = document.createElement("p");
+  date.classList.add("h4", "pt-3");
+  const options = {
+    weekday: "long",
+    //year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  head.appendChild(date);
+  const today = new Date();
+  date.innerHTML = today.toLocaleDateString("en-US", options);
+  star.classList.add("purple");
+  sun.classList.remove("purple");
+});
+day.addEventListener("click", (eo) => {
+  head.innerHTML = " My Day";
+  //show todays
+  const date = document.createElement("p");
+  date.classList.add("h4", "pt-3");
+  const options = {
+    weekday: "long",
+    // year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+  head.appendChild(date);
+  const today = new Date();
+  date.innerHTML = today.toLocaleDateString("en-US", options);
+  sun.classList.add("purple");
+  star.classList.remove("purple");
+});
 
 /*=============== SEARCH BAR JS ===============*/
 const toggleSearch = (search, button) => {
