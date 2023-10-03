@@ -1,5 +1,6 @@
 //TASKS
 const input = document.getElementById("inputTask");
+
 const tasksDiv = document.getElementById("tasks");
 const trashButton = document.getElementsByClassName("icon-trash-o");
 let arrayOfTasks = [];
@@ -119,6 +120,11 @@ function toggleStatusTaskWith(taskId) {
   }
   addDataToLocalStorageFrom(arrayOfTasks);
 }
+//sideBar Enter Name
+/*const myInput = document.getElementById("myInput");
+const promptMsgName = prompt("Enter Your Name");
+myInput.innerText = promptMsgName;*/
+
 //sideBar
 const important = document.getElementById("import");
 const head = document.getElementById("myHead");
@@ -127,6 +133,8 @@ const star = document.getElementById("importIcon");
 const sun = document.getElementById("dayIcon");
 
 important.addEventListener("click", (eo) => {
+  day.classList.remove("active", "bg-light", "bg-gradient");
+  important.classList.add("active", "bg-light", "bg-gradient");
   head.innerHTML = "Important";
   //show todays
   const date = document.createElement("p");
@@ -144,7 +152,9 @@ important.addEventListener("click", (eo) => {
   sun.classList.remove("purple");
 });
 day.addEventListener("click", (eo) => {
-  head.innerHTML = " My Day";
+  day.classList.add("active", "bg-light", "bg-gradient");
+  important.classList.remove("active", "bg-light", "bg-gradient");
+  head.innerHTML = "My Day";
   //show todays
   const date = document.createElement("p");
   date.classList.add("h4", "pt-3");

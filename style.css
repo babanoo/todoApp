@@ -10,12 +10,49 @@ header{
 input {
  outline: none;
 }
+
 .container {
  max-width: 1280px;
 }
-.hover-li:hover {
- background-color: rgb(235, 233, 233);
+
+.hover-li, .active {
+   transition: all 0.5s;
+   position: relative;
+   cursor: pointer;
 }
+
+ .hover-li::before {
+  position: absolute;
+  content: "";
+  transition: all 0.5s;
+  width: 100%;
+  height: 16px;
+  top: 25px;
+  left: 0;
+  right: 100%;
+}
+ .hover-li:hover:before{
+ border-left:4px solid rgb(0, 102, 255);
+ transform: scaleY(4);
+}
+.active::before {
+  position: absolute;
+  content: "";
+  transition: all 0.5s;
+  width: 100%;
+  height: 16px;
+  top: 25px;
+  left: 0;
+  right: 100%;
+  border-left:4px solid rgb(0, 102, 255);
+ transform: scaleY(4);
+}
+.active, .hover-li:hover {
+ font-weight: bold;
+ background-color: rgba(233, 233, 233, 0.441);
+}
+
+
 .task-input::placeholder {
  color: rgb(0,191,255);
  font-weight: 500;
@@ -196,5 +233,9 @@ input {
   color: rgb(0, 170, 255);
 }
 .purple {
-  color: rgb(191, 64, 191);
+  background-image: -webkit-linear-gradient;
+  
+  background: linear-gradient(to right, #823fa1 , #6248e7);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
 }
