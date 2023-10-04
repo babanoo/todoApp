@@ -44,7 +44,7 @@ input {
   left: 0;
   right: 100%;
   border-left:4px solid rgb(0, 102, 255);
- transform: scaleY(4);
+  transform: scaleY(4);
 }
 .active, .hover-li:hover {
  font-weight: bold;
