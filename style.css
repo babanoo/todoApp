@@ -10,10 +10,9 @@ header{
 input {
  outline: none;
 }
-
 .container {
- max-width: 1280px;
-}
+  max-width: 1280px;
+ }
 
 .hover-li, .active {
    transition: all 0.5s;

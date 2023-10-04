@@ -133,8 +133,8 @@ const star = document.getElementById("importIcon");
 const sun = document.getElementById("dayIcon");
 
 important.addEventListener("click", (eo) => {
-  day.classList.remove("active", "bg-light", "bg-gradient");
-  important.classList.add("active", "bg-light", "bg-gradient");
+  day.classList.remove("active");
+  important.classList.add("active");
   head.innerHTML = "Important";
   //show todays
   const date = document.createElement("p");
@@ -152,8 +152,8 @@ important.addEventListener("click", (eo) => {
   sun.classList.remove("purple");
 });
 day.addEventListener("click", (eo) => {
-  day.classList.add("active", "bg-light", "bg-gradient");
-  important.classList.remove("active", "bg-light", "bg-gradient");
+  day.classList.add("active");
+  important.classList.remove("active");
   head.innerHTML = "My Day";
   //show todays
   const date = document.createElement("p");
