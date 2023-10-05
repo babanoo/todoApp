@@ -10,10 +10,13 @@ header{
 input {
  outline: none;
 }
+li {
+  cursor: not-allowed;
+}
 .container {
   max-width: 1280px;
  }
- .hover-li, .active, .task-input {
+ .hover-li, .active, .task-input, .search__button {
   cursor: pointer;
  }
 .hover-li, .active {
@@ -138,7 +141,6 @@ input {
   margin: auto;
   display: grid;
   place-items: center;
-  cursor: pointer;
   transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 .search__icon, .search__close {
