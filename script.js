@@ -1,18 +1,18 @@
 //TASKS
 const input = document.getElementById("inputTask");
-
 const tasksDiv = document.getElementById("tasks");
 const trashButton = document.getElementsByClassName("icon-trash-o");
 let arrayOfTasks = [];
+let count = 0;
 // Check if Theres Tasks In Local Storage
 if (localStorage.getItem("addTask")) {
   arrayOfTasks = JSON.parse(localStorage.getItem("addTask"));
 }
-
 // Trigger Get Data From Local Storage Function
 getDataFromLocalStorage();
-//add tasks
 input.onclick = function () {
+  count++;
+  document.getElementById("countTask").innerHTML = count;
   const promptMsgTask = prompt("Enter Task");
   if (promptMsgTask !== null) {
     addTaskToArray(promptMsgTask + input.value);
@@ -39,17 +39,22 @@ tasksDiv.addEventListener("click", (eo) => {
     }
   }
 });
-function addTaskToArray(tastText) {
+//add tasks
+function addTaskToArray(taskText) {
+  // Task Data
   const task = {
     id: Date.now(),
-    title: tastText,
+    title: taskText,
     completed: false,
   };
+  // Push Task To Array Of Tasks
   arrayOfTasks.push(task);
+  // Add Tasks To Page
   addElementsToPageFrom(arrayOfTasks);
   // Add Tasks To Local Storage
   addDataToLocalStorageFrom(arrayOfTasks);
 }
+
 function addElementsToPageFrom(arrayOfTasks) {
   tasksDiv.innerHTML = "";
   arrayOfTasks.forEach((task) => {
@@ -131,10 +136,11 @@ const head = document.getElementById("myHead");
 const day = document.getElementById("myDay");
 const star = document.getElementById("importIcon");
 const sun = document.getElementById("dayIcon");
-
 important.addEventListener("click", (eo) => {
-  day.classList.remove("active");
-  important.classList.add("active");
+  //hide Tasks
+  tasksDiv.classList.add("d-none");
+  day.classList.remove("active", "bg-light", "bg-gradient");
+  important.classList.add("active", "bg-light", "bg-gradient");
   head.innerHTML = "Important";
   //show todays
   const date = document.createElement("p");
@@ -152,8 +158,10 @@ important.addEventListener("click", (eo) => {
   sun.classList.remove("purple");
 });
 day.addEventListener("click", (eo) => {
-  day.classList.add("active");
-  important.classList.remove("active");
+  //show Tasks div
+  tasksDiv.classList.remove("d-none");
+  day.classList.add("active", "bg-light", "bg-gradient");
+  important.classList.remove("active", "bg-light", "bg-gradient");
   head.innerHTML = "My Day";
   //show todays
   const date = document.createElement("p");
