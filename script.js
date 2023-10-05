@@ -126,9 +126,9 @@ function toggleStatusTaskWith(taskId) {
   addDataToLocalStorageFrom(arrayOfTasks);
 }
 //sideBar Enter Name
-/*const myInput = document.getElementById("myInput");
+const myInput = document.getElementById("myInput");
 const promptMsgName = prompt("Enter Your Name");
-myInput.innerText = promptMsgName;*/
+myInput.innerText = promptMsgName;
 
 //sideBar
 const important = document.getElementById("import");
