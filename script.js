@@ -129,7 +129,6 @@ function toggleStatusTaskWith(taskId) {
 const myInput = document.getElementById("myInput");
 const promptMsgName = prompt("Enter Your Name");
 myInput.innerText = promptMsgName;
-
 //sideBar
 const important = document.getElementById("import");
 const head = document.getElementById("myHead");
