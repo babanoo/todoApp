@@ -16,12 +16,18 @@ li {
 .container {
   max-width: 1280px;
  }
+ .tasks {
+  max-height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+ }
  .hover-li, .active, .task-input, .search__button {
   cursor: pointer;
  }
 .hover-li, .active {
-   transition: all 0.5s;
+  transition: all 0.2s;
    position: relative;
+   
 }
 
  .hover-li::before {
@@ -41,7 +47,6 @@ li {
 .active::before {
   position: absolute;
   content: "";
-  transition: all 0.5s;
   width: 100%;
   height: 16px;
   top: 25px;
@@ -108,7 +113,6 @@ li {
   position: relative;
   width: 76px;
   height: 76px;
-  box-shadow: 0 4px 24px hsla(222, 68%, 12%, 0.1);
   border-radius: 4rem;
   padding: 10px;
   overflow: hidden;
@@ -122,13 +126,11 @@ li {
   border-radius: 4rem;
   padding-left: 14px;
   font-weight: 500;
-  opacity: 0;
+ opacity: 0;
   pointer-events: none;
   transition: opacity 1.5s;
 }
-.search__input:-webkit-autofill {
-  box-shadow: 0 0 0 100px #fff inset;
-}
+
 .search__button {
   width: 56px;
   height: 56px;
@@ -236,7 +238,6 @@ li {
 }
 .purple {
   background-image: -webkit-linear-gradient;
-  
   background: linear-gradient(to right, #823fa1 , #6248e7);
         -webkit-text-fill-color: transparent;
         -webkit-background-clip: text;

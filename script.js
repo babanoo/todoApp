@@ -12,30 +12,34 @@ if (localStorage.getItem("addTask")) {
 getDataFromLocalStorage();
 input.onclick = function () {
   count++;
-  document.getElementById("countTask").innerHTML = count;
   const promptMsgTask = prompt("Enter Task");
-  if (promptMsgTask !== null) {
+  if (promptMsgTask !== "") {
+    document.getElementById("countTask").innerHTML = count;
     addTaskToArray(promptMsgTask + input.value);
     promptMsgTask += input.value;
+  } else if (input.value === "") {
+    count--;
+    alert("Please add some task!");
+    return false;
   }
 };
 // Click On Task Element
-tasksDiv.addEventListener("click", (eo) => {
-  if (eo.target.classList.contains("task")) {
+tasksDiv.addEventListener("click", (e) => {
+  if (e.target.classList.contains("task")) {
     // Toggle Completed For The Task
-    toggleStatusTaskWith(eo.target.getAttribute("data-id"));
+    toggleStatusTaskWith(e.target.getAttribute("data-id"));
     //complete task
-    eo.target.classList.toggle("done");
-  } else if (eo.target.className == "bi bi-trash") {
+    e.target.classList.toggle("done");
+  } else if (e.target.className == "bi bi-trash") {
     //delete tasks
     const confirmdelete = confirm("Are You Sure?");
     if (confirmdelete) {
       // Remove Task From Local Storage
       deleteTaskWith(
-        eo.target.parentElement.parentElement.getAttribute("data-id")
+        e.target.parentElement.parentElement.getAttribute("data-id")
       );
       //remove task From page
-      eo.target.parentElement.parentElement.remove();
+      e.target.parentElement.parentElement.remove();
     }
   }
 });
@@ -84,13 +88,14 @@ function addElementsToPageFrom(arrayOfTasks) {
     const startButton = document.createElement("span");
     startButton.className = "bi bi-star";
     childTwo.appendChild(startButton);
-    startButton.addEventListener("click", (eo) => {
-      if (eo.target.classList.contains("bi-star")) {
-        eo.target.classList.replace("bi-star", "bi-star-fill");
-        eo.target.classList.add("text-primary");
+    startButton.addEventListener("click", (event) => {
+      if (event.target.classList.contains("bi-star")) {
+        event.target.classList.replace("bi-star", "bi-star-fill");
+        event.target.classList.add("text-primary");
+        document.getElementById("countImport").innerHTML = count;
       } else {
-        eo.target.className = "bi bi-star";
-        eo.target.classList.remove("text-primary");
+        event.target.className = "bi bi-star";
+        event.target.classList.remove("text-primary");
       }
     });
     div.appendChild(childOne);
@@ -135,7 +140,7 @@ const head = document.getElementById("myHead");
 const day = document.getElementById("myDay");
 const star = document.getElementById("importIcon");
 const sun = document.getElementById("dayIcon");
-important.addEventListener("click", (eo) => {
+important.addEventListener("click", () => {
   //hide Tasks
   tasksDiv.classList.add("d-none");
   day.classList.remove("active", "bg-light", "bg-gradient");
@@ -156,7 +161,7 @@ important.addEventListener("click", (eo) => {
   star.classList.add("purple");
   sun.classList.remove("purple");
 });
-day.addEventListener("click", (eo) => {
+day.addEventListener("click", () => {
   //show Tasks div
   tasksDiv.classList.remove("d-none");
   day.classList.add("active", "bg-light", "bg-gradient");
