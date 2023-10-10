@@ -77,7 +77,6 @@ function addElementsToPageFrom(arrayOfTasks) {
     );
     const childOne = document.createElement("div");
     childOne.className = "childone";
-    childOne.className = "childone";
     childOne.classList.add("ps-5");
     const childTwo = document.createElement("div");
     div.setAttribute("data-id", task.id);
@@ -184,13 +183,20 @@ day.addEventListener("click", () => {
 });
 
 /*=============== SEARCH BAR JS ===============*/
-const toggleSearch = (search, button) => {
+
+toggleSearch = (search, button) => {
   const searchBar = document.getElementById(search),
     searchButton = document.getElementById(button);
-
+  const searchInput = document.getElementById("searchInput");
   searchButton.addEventListener("click", () => {
     // We add the show-search class, so that the search bar expands
-    searchBar.classList.toggle("show-search");
+    searchBar.classList.add("show-search");
+    searchInput.focus();
+    searchInput.addEventListener("blur", () => {
+      if (searchInput.value === "") {
+        searchBar.classList.remove("show-search");
+      }
+    });
   });
 };
 toggleSearch("search-bar", "search-button");

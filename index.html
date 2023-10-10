@@ -36,14 +36,39 @@
         <header class="d-flex justify-content-between align-items-end pt-5">
             <h1 class="text-white ps-4 pb-2 pt-5" id="myHead"></h1>
             <form  class="search mb-3" id="search-bar">
-                <input type="search" placeholder="Type Here..." name="q" class="search__input">
+                <input type="search" placeholder="Type Here..." name="q" class="search__input" id="searchInput">
                 <div class="search__button" id="search-button">
                     <i class="bi bi-search search__icon d-flex align-items-center pe-0"></i>
-                    <i class="bi bi-x-circle search__close d-flex align-items-center pe-0"></i>
                 </div>
             </form>
         </header>
-        <div id="tasks" class="d-flex flex-column pe-3 ps-5 tasks"></div>
+        <div id="tasks" class="d-flex flex-column pe-3 ps-5 tasks">
+            <div class="task">
+                <div class="childOne" data-title="taskText">Go for a walk</div>
+                <div class="childTwo">
+                   <span class="bi bi-trash"></span>
+                   <span class="bi bi-star"></span>
+                </div>
+            </div>
+            <div class="task">
+                <div class="childOne">Write for a half hour</div>
+                <div class="childTwo">
+                    <span class="bi bi-trash"></span>
+                    <span class="bi bi-star"></span></div>
+            </div>
+            <div class="task">
+                <div class="childOne">Send report to frank</div>
+                <div class="childTwo">
+                    <span class="bi bi-trash"></span>
+                    <span class="bi bi-star"></span></div>
+            </div>
+            <div class="task">
+                <div class="childOne">Make up fictional to do items for screenshot</div>
+                <div class="childTwo">
+                    <span class="bi bi-trash"></span>
+                    <span class="bi bi-star"></span></div>
+            </div>
+        </div>
         <div class="form-task py-4  d-flex align-items-center">
             <i class="bi bi-plus-circle text-info ps-5  bg-body d-flex align-items-center" id="add"></i>
             <input type="text" placeholder="Add a Task" class="border-0 ps-3 task-input bg-body" id="inputTask">
