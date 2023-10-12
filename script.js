@@ -1,9 +1,12 @@
 //TASKS
 const input = document.getElementById("inputTask");
 const tasksDiv = document.getElementById("tasks");
+const task = document.getElementsByClassName("task");
 const trashButton = document.getElementsByClassName("icon-trash-o");
-let arrayOfTasks = [];
-let count = 0;
+// Empty Array To Store The Tasks
+//let arrayOfTasks = [];
+let count = 4;
+let counetImport = 0;
 // Check if Theres Tasks In Local Storage
 if (localStorage.getItem("addTask")) {
   arrayOfTasks = JSON.parse(localStorage.getItem("addTask"));
@@ -13,11 +16,11 @@ getDataFromLocalStorage();
 input.onclick = function () {
   count++;
   const promptMsgTask = prompt("Enter Task");
-  if (promptMsgTask !== "") {
+  if (promptMsgTask.trim() !== "") {
     document.getElementById("countTask").innerHTML = count;
     addTaskToArray(promptMsgTask + input.value);
     promptMsgTask += input.value;
-  } else if (input.value === "") {
+  } else {
     count--;
     alert("Please add some task!");
     return false;
@@ -33,6 +36,7 @@ tasksDiv.addEventListener("click", (e) => {
   } else if (e.target.className == "bi bi-trash") {
     //delete tasks
     const confirmdelete = confirm("Are You Sure?");
+    count--;
     if (confirmdelete) {
       // Remove Task From Local Storage
       deleteTaskWith(
@@ -40,9 +44,22 @@ tasksDiv.addEventListener("click", (e) => {
       );
       //remove task From page
       e.target.parentElement.parentElement.remove();
+      document.getElementById("countTask").innerHTML = count;
     }
+  } else if (e.target.classList.contains("bi-star")) {
+    importantStatusTaskWith(e.target.getAttribute("data-id"));
+    e.target.className = "bi bi-star-fill";
+    e.target.classList.add("text-primary");
+    counetImport++;
+    document.getElementById("countImport").innerHTML = counetImport;
+  } else if (e.target.classList.contains("bi-star-fill")) {
+    e.target.className = "bi bi-star";
+    e.target.classList.remove("text-primary");
+    counetImport--;
+    document.getElementById("countImport").innerHTML = counetImport;
   }
 });
+
 //add tasks
 function addTaskToArray(taskText) {
   // Task Data
@@ -50,6 +67,7 @@ function addTaskToArray(taskText) {
     id: Date.now(),
     title: taskText,
     completed: false,
+    important: false,
   };
   // Push Task To Array Of Tasks
   arrayOfTasks.push(task);
@@ -60,7 +78,7 @@ function addTaskToArray(taskText) {
 }
 
 function addElementsToPageFrom(arrayOfTasks) {
-  tasksDiv.innerHTML = "";
+  //tasksDiv.innerHTML = "";
   arrayOfTasks.forEach((task) => {
     const div = document.createElement("div");
     div.className = "task";
@@ -76,27 +94,23 @@ function addElementsToPageFrom(arrayOfTasks) {
       "border-bottom"
     );
     const childOne = document.createElement("div");
-    childOne.className = "childone";
+    childOne.className = "childOne";
     childOne.classList.add("ps-5");
     const childTwo = document.createElement("div");
     div.setAttribute("data-id", task.id);
-    childOne.appendChild(document.createTextNode(task.title));
+    const taskContent = document.createElement("p");
+    childOne.appendChild(taskContent);
+    taskContent.appendChild(document.createTextNode(task.title));
     const trashButton = document.createElement("span");
     trashButton.className = "bi bi-trash";
     childTwo.appendChild(trashButton);
     const startButton = document.createElement("span");
-    startButton.className = "bi bi-star";
     childTwo.appendChild(startButton);
-    startButton.addEventListener("click", (event) => {
-      if (event.target.classList.contains("bi-star")) {
-        event.target.classList.replace("bi-star", "bi-star-fill");
-        event.target.classList.add("text-primary");
-        document.getElementById("countImport").innerHTML = count;
-      } else {
-        event.target.className = "bi bi-star";
-        event.target.classList.remove("text-primary");
-      }
-    });
+    startButton.className = "bi bi-star";
+    // Check If imported task
+    //if (task.important) {
+    // startButton.className = "bi bi-star-fill";
+    //}
     div.appendChild(childOne);
     div.appendChild(childTwo);
     tasksDiv.prepend(div);
@@ -106,7 +120,6 @@ function addElementsToPageFrom(arrayOfTasks) {
 function addDataToLocalStorageFrom(arrayOfTasks) {
   window.localStorage.setItem("addTask", JSON.stringify(arrayOfTasks));
 }
-
 function getDataFromLocalStorage() {
   let data = window.localStorage.getItem("addTask");
   if (data) {
@@ -129,16 +142,52 @@ function toggleStatusTaskWith(taskId) {
   }
   addDataToLocalStorageFrom(arrayOfTasks);
 }
+function importantStatusTaskWith(taskId) {
+  for (let i = 0; i < arrayOfTasks.length; i++) {
+    if (arrayOfTasks[i].id == taskId) {
+      arrayOfTasks[i].important == false
+        ? (arrayOfTasks[i].important = true)
+        : (arrayOfTasks[i].important = false);
+    }
+  }
+  addDataToLocalStorageFrom(arrayOfTasks);
+}
 //sideBar Enter Name
 const myInput = document.getElementById("myInput");
-const promptMsgName = prompt("Enter Your Name");
-myInput.innerText = promptMsgName;
+//myInput.innerText = localStorage.getItem("value");
+function promptName() {
+  if (localStorage.getItem("value")) {
+    myInput.innerText = localStorage.getItem("value");
+  } else {
+    const promptMsgName = prompt("Enter Your Name");
+    if (promptMsgName.trim() !== "") {
+      myInput.value = promptMsgName;
+      localStorage.setItem("value", myInput.value);
+      myInput.innerText = localStorage.getItem("value");
+    }
+  }
+}
+promptName();
+//Add userNama in Localstorage
+
 //sideBar
 const important = document.getElementById("import");
 const head = document.getElementById("myHead");
 const day = document.getElementById("myDay");
 const star = document.getElementById("importIcon");
 const sun = document.getElementById("dayIcon");
+//show todays
+const date = document.createElement("p");
+date.classList.add("h4", "pt-3");
+const options = {
+  weekday: "long",
+  // year: "numeric",
+  month: "long",
+  day: "numeric",
+};
+head.appendChild(date);
+const today = new Date();
+date.innerHTML = today.toLocaleDateString("en-US", options);
 important.addEventListener("click", () => {
   //hide Tasks
   tasksDiv.classList.add("d-none");

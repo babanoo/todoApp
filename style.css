@@ -17,7 +17,7 @@ li {
   max-width: 1280px;
  }
  .tasks {
-  max-height: 360px;
+  max-height: 345px;
   overflow-y: auto;
   overflow-x: hidden;
  }
@@ -65,48 +65,6 @@ li {
  font-size: 18px;
 }
 
-.icon-sun2:before {
-  content: "\e901";
-  color: rgb(30,144,255);
-  font-size: 20px;
-}
-.icon-home3:before {
-  content: "\e902";
-  color: rgb(30,144,255);
-  font-size: 20px;
-}
-.icon-calendar:before {
-  content: "\e953";
-  color: rgb(30,144,255);
-  font-size: 15px;
-}
-.icon-search:before {
-  content: "\e986";
-  color: rgb(235, 233, 233);
-  font-size: 20px;
-}
-.icon-cancel-circle:before {
-  content: "\ea0d";
-  font-size: 30px;
-  color: #fff;
-}
-.icon-plus:before {
-  content: "\f067";
-  color: rgb(30,144,255);
-  font-size: 15px;
-}
-.icon-star-o:before {
-  content: "\f006";
-  color: rgb(0,191,255);
-  font-size: 20px;
-}
-.icon-trash-o:before {
-  content: "\f014";
-  color: red;
-}
-.icon-circle-thin:before {
-  content: "\f1db";
-}
 .search {
   position: relative;
   width: 76px;
@@ -161,8 +119,8 @@ li {
 }
 
 .task, .done {
-  cursor: pointer;
   position: relative;
+  direction: ltr;
 }
 .task:hover .bi-trash {
   color: rgba(255, 0, 0, 0.802);
@@ -184,11 +142,11 @@ li {
     background-color: rgb(255, 255, 255);
     transform: translateX(-5px);
 }
-.done .childone {
+ .done .childOne {
   text-decoration: line-through;
   color: dimgray;
 }
-.done::after {
+ .done::after {
   content: '';
   position: absolute;
   border-color: rgb(255, 255, 255);
