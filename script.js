@@ -4,7 +4,7 @@ const tasksDiv = document.getElementById("tasks");
 const task = document.getElementsByClassName("task");
 const trashButton = document.getElementsByClassName("icon-trash-o");
 // Empty Array To Store The Tasks
-//let arrayOfTasks = [];
+let arrayOfTasks = [];
 let count = 4;
 let counetImport = 0;
 // Check if Theres Tasks In Local Storage
@@ -47,7 +47,6 @@ tasksDiv.addEventListener("click", (e) => {
       document.getElementById("countTask").innerHTML = count;
     }
   } else if (e.target.classList.contains("bi-star")) {
-    importantStatusTaskWith(e.target.getAttribute("data-id"));
     e.target.className = "bi bi-star-fill";
     e.target.classList.add("text-primary");
     counetImport++;
@@ -67,7 +66,6 @@ function addTaskToArray(taskText) {
     id: Date.now(),
     title: taskText,
     completed: false,
-    important: false,
   };
   // Push Task To Array Of Tasks
   arrayOfTasks.push(task);
@@ -107,10 +105,6 @@ function addElementsToPageFrom(arrayOfTasks) {
     const startButton = document.createElement("span");
     childTwo.appendChild(startButton);
     startButton.className = "bi bi-star";
-    // Check If imported task
-    //if (task.important) {
-    // startButton.className = "bi bi-star-fill";
-    //}
     div.appendChild(childOne);
     div.appendChild(childTwo);
     tasksDiv.prepend(div);
@@ -142,16 +136,7 @@ function toggleStatusTaskWith(taskId) {
   }
   addDataToLocalStorageFrom(arrayOfTasks);
 }
-function importantStatusTaskWith(taskId) {
-  for (let i = 0; i < arrayOfTasks.length; i++) {
-    if (arrayOfTasks[i].id == taskId) {
-      arrayOfTasks[i].important == false
-        ? (arrayOfTasks[i].important = true)
-        : (arrayOfTasks[i].important = false);
-    }
-  }
-  addDataToLocalStorageFrom(arrayOfTasks);
-}
+
 //sideBar Enter Name
 const myInput = document.getElementById("myInput");
 //myInput.innerText = localStorage.getItem("value");
