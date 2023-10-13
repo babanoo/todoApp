@@ -86,7 +86,7 @@ li {
  opacity: 0;
  pointer-events: none;
  cursor: initial;
- transition: opacity 0.8s;
+ transition: opacity 1s;
  color: #fff;
 }
 
