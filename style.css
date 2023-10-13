@@ -21,7 +21,7 @@ li {
   overflow-y: auto;
   overflow-x: hidden;
  }
- .hover-li, .active, .task-input, .search__button {
+ .hover-li, .active, .task-input, .search__button, .task, .done {
   cursor: pointer;
  }
 .hover-li, .active {
