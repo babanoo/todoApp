@@ -16,12 +16,11 @@ li {
 .container {
   max-width: 1280px;
  }
- .tasks {
+ .task-wrapper {
   max-height: 345px;
   overflow-y: auto;
-  overflow-x: hidden;
  }
- .hover-li, .active, .task-input, .search__button, .task, .done {
+ .cursor-pointer {
   cursor: pointer;
  }
 .hover-li, .active {
@@ -59,7 +58,7 @@ li {
 }
 
 
-.task-input::placeholder {
+.add-task::placeholder {
  color: rgb(0,191,255);
  font-weight: 500;
  font-size: 18px;
@@ -82,12 +81,11 @@ li {
   border-radius: 4rem;
   padding-left: 14px;
   font-weight: 500;
- background-color: #43205436;
- opacity: 0;
- pointer-events: none;
- cursor: initial;
- transition: opacity 1s;
- color: #fff;
+  background-color: #43205436;
+  opacity: 0;
+  pointer-events: none;
+  cursor: initial;
+  transition: opacity 1s;
 }
 
 .search__button {
@@ -105,7 +103,6 @@ li {
   transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
 .search__icon {
-  color: #fff;
   position: absolute;
  transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
@@ -117,11 +114,6 @@ li {
   opacity: 1;
   pointer-events: initial;
 }
-
-.task, .done {
-  position: relative;
-  direction: ltr;
-}
 .task:hover .bi-trash {
   color: rgba(255, 0, 0, 0.802);
 }
@@ -132,7 +124,7 @@ li {
 .task::before {
     content: "";
     position: absolute;
-    left: 0px;
+    left: 5px;
     right: 100%;
     width: 25px;
     height: 25px;
@@ -142,7 +134,7 @@ li {
     background-color: rgb(255, 255, 255);
     transform: translateX(-5px);
 }
- .done .childOne {
+ .done .content {
   text-decoration: line-through;
   color: dimgray;
 }
@@ -153,22 +145,22 @@ li {
   border-style: solid;
   border-width: 0 2px 2px 0;
   top: 30%;
-  left: 3px;
+  left: 8px;
   transform: rotate(45deg);
   height: 13px;
   width: 6px;
 }
 .done::before {
-  content: "";
+   content: "";
     position: absolute;
-    left: 0;
+    left: 5px;
     right: 10%;
     width: 25px;
     height: 25px;
     border-radius: 50%;
     border: none;
     background-color: rgb(0, 0, 255);
-    transform: translateX(-5px);
+    transform: translateX(px);
 }
 
 .bi {
