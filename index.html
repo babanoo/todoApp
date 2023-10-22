@@ -13,7 +13,7 @@
     <script src="./script.js" defer></script>
 </head>
 <body>
-    <section class="container">
+    <div class="container">
     <section class="bg-body row g-0 my-5">
     <aside class="col-md-4">
         <div class="d-flex align-items-end me-5 ms-3 pt-0 pb-3 border-bottom">
@@ -21,8 +21,8 @@
         </div>
         <nav>
             <ul class="mx-0 px-0">
-                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between" id="import"><button class="nav-link d-flex align-items-end"><i class="bi bi-star pe-2 blue" id = "importIcon"></i>Important</button></li>
-                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between" id="myDay">  <button class="nav-link d-flex align-items-end"><i class="bi bi-brightness-high pe-2 blue" id="dayIcon"></i>My Day</button></li>
+                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between" id="import"><button class="nav-link d-flex align-items-end"><i class="bi bi-star pe-2 blue" id = "importIcon"></i>Important <span id="important"></span></button></li>
+                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between" id="myDay">  <button class="nav-link d-flex align-items-end"><i class="bi bi-brightness-high pe-2 blue" id="dayIcon"></i>My Day <span id="myDay"></span></button></li>
                 <li class="list-group-item ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-star pe-2"></i>Important</a></li>
                 <li class="list-group-item ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-calendar4-week pe-2"></i>Planned</a></li>
                 <li class="list-group-item  ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-house-door"></i>Tasks</a></li>
@@ -42,7 +42,7 @@
         </form>
     </header>
     <main class="ps-4">
-        <div class="task-wrapper"></div>
+        <div class="tasks-wrapper"></div>
         <div class="form-task py-4  d-flex align-items-center">
             <i class="bi bi-plus-circle text-info  bg-body d-flex align-items-center" id="add"></i>
             <input type="text" placeholder="Add a Task" class="add-task border-0 bg-body">
@@ -50,6 +50,6 @@
     </main>
     </section>
     </section>
-    </section>
+</div>
 </body>
 </html>
