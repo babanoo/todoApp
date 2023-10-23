@@ -16,9 +16,10 @@ li {
 .container {
   max-width: 1280px;
  }
- .task-wrapper {
+ .tasks-wrapper {
   max-height: 345px;
   overflow-y: auto;
+  overflow-x: hidden;
  }
  .cursor-pointer {
   cursor: pointer;
@@ -58,7 +59,7 @@ li {
 }
 
 
-.add-task::placeholder {
+.add-task {
  color: rgb(0,191,255);
  font-weight: 500;
  font-size: 18px;
