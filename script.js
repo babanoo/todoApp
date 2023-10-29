@@ -136,6 +136,9 @@ function renderTasks(tasks) {
         e.target.classList.remove("text-primary");
       }
       addDataToLocalStorage(tasks);
+      countImportant.textContent = tasks.filter(
+        (task) => task.important
+      ).length;
     });
     tasksWrapper.prepend(todoContainer);
   });
