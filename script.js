@@ -2,18 +2,24 @@ const addTaskElement = document.querySelector(".add-task");
 const tasksWrapper = document.querySelector(".tasks-wrapper");
 const countImportant = document.querySelector("#count-important");
 const countTasks = document.querySelector("#count-Tasks");
+const important = document.querySelector("#import");
+const day = document.querySelector("#my-day");
+const date = document.querySelector(".date");
+const userName = document.querySelector(".username");
+const heading = document.querySelector(".heading");
+const currentDate = new Date();
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   {
     id: "t4",
     title: "task four",
     completed: false,
-    important: false,
+    important: true,
   },
   {
     id: "t3",
     title: "task three",
     completed: false,
-    important: false,
+    important: true,
   },
   {
     id: "t2",
@@ -30,17 +36,81 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
 ];
 renderTasks(tasks);
 getDataFromLocalStorage();
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+date.textContent = `${days[currentDate.getDay()]}, ${
+  months[currentDate.getMonth()]
+} ${currentDate.getDate()}`;
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("name")) {
+    userName.textContent = localStorage.getItem("name");
+  } else {
+    const promptName = prompt("Please enter your name");
+    if (!promptName.trim()) {
+      alert("Username cannot be blank!");
+      location.reload();
+    } else {
+      userName.textContent = promptName;
+      localStorage.setItem("name", promptName);
+    }
+  }
+});
+
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
   addDataToLocalStorage(tasks);
 }
 saveCountTask();
+function CountImportantTask() {
+  countImportant.textContent = tasks.filter(
+    (task) => task.important === true
+  ).length;
+  addDataToLocalStorage(tasks);
+}
+CountImportantTask();
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
     const todoContainer = document.createElement("div");
     todoContainer.className =
       "task py-3 d-flex align-items-start border-bottom cursor-pointer position-relative";
+    if (task.completed) {
+      todoContainer.classList.add("done");
+    } else {
+      todoContainer.classList.remove("done");
+    }
+    todoContainer.addEventListener("click", () => {
+      task.completed = !task.completed;
+      if (task.completed) {
+        todoContainer.classList.add("done");
+      } else {
+        todoContainer.classList.remove("done");
+      }
+      addDataToLocalStorage(tasks);
+    });
     todoContainer.setAttribute("data-id", task.id);
     const taskContent = document.createElement("p");
     taskContent.className = "flex-grow-1 ps-5 content";
@@ -53,25 +123,53 @@ function renderTasks(tasks) {
     todoContainer.appendChild(startButton);
     startButton.className = "bi bi-star border-0 bg-body";
     if (task.important === true) {
-      startButton.className = "bi bi-star-fill";
+      startButton.classList.replace("bi-star", "bi-star-fill");
+      startButton.classList.add("text-primary");
     }
     startButton.addEventListener("click", (e) => {
-      if (e.target.classList.contains("bi-star")) {
+      task.important = !task.important;
+      if (task.important === true) {
         e.target.classList.replace("bi-star", "bi-star-fill");
         e.target.classList.add("text-primary");
-      } else {
+      } else if (task.important === false) {
         e.target.classList.replace("bi-star-fill", "bi-star");
         e.target.classList.remove("text-primary");
       }
+      addDataToLocalStorage(tasks);
     });
     tasksWrapper.prepend(todoContainer);
   });
 }
-
+function createNewTask(taskText) {
+  const newTask = {
+    id: Date.now(),
+    title: taskText,
+    completed: false,
+    important: false,
+  };
+  tasks.push(newTask);
+  renderTasks(tasks);
+  addDataToLocalStorage(tasks);
+  saveCountTask();
+}
+important.addEventListener("click", (e) => {
+  const importantTasks = tasks.filter((task) => task.important === true);
+  heading.textContent = "Important";
+  date.textContent = `${days[currentDate.getDay()]}, ${
+    months[currentDate.getMonth()]
+  } ${currentDate.getDate()}`;
+  day.classList.remove("active", "text-bg-light");
+  e.target.classList.add("active", "text-bg-light");
+  renderTasks(importantTasks);
+});
+day.addEventListener("click", (e) => {
+  const showTasks = tasks.filter((task) => task);
+  heading.textContent = "My Day";
+  important.classList.remove("active", "text-bg-light");
+  e.target.classList.add("active", "text-bg-light");
+  renderTasks(showTasks);
+});
 tasksWrapper.addEventListener("click", (e) => {
-  if (e.target.classList.contains("task")) {
-    e.target.classList.toggle("done");
-  }
   if (e.target.classList.contains("bi-trash")) {
     const confirmDelete = confirm("are you sure");
     if (confirmDelete) {
@@ -85,25 +183,12 @@ addTaskElement.addEventListener("click", (e) => {
   const promptMsgTask = prompt("Enter Task");
   if (promptMsgTask.trim() !== "") {
     createNewTask(promptMsgTask);
-    addDataToLocalStorage(tasks);
   } else {
     alert("Please add some task!");
     return false;
   }
 });
 
-function createNewTask(taskText) {
-  const newTask = {
-    id: Date.now(),
-    title: taskText,
-    completed: false,
-    important: false,
-  };
-  tasks.push(newTask);
-  renderTasks(tasks);
-  addDataToLocalStorage(tasks);
-  saveCountTask();
-}
 function addDataToLocalStorage(tasks) {
   window.localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -119,12 +204,12 @@ function removeTask(taskId) {
   addDataToLocalStorage(tasks);
   saveCountTask();
 }
+
 /*=============== SEARCH BAR JS ===============*/
 
 toggleSearch = (search, button) => {
-  const searchBar = document.getElementById(search),
-    searchButton = document.getElementById(button);
-  const searchInput = document.getElementById("searchInput");
+  const searchBar = document.querySelector("#search-bar"),
+    searchButton = document.querySelector("#search-button");
   searchButton.addEventListener("click", () => {
     // We add the show-search class, so that the search bar expands
     searchBar.classList.add("show-search");
@@ -137,3 +222,13 @@ toggleSearch = (search, button) => {
   });
 };
 toggleSearch("search-bar", "search-button");
+const searchInput = document.querySelector("#search-input");
+let filterTasks = function (event) {
+  let searchKeyword = searchInput.value.toLowerCase();
+  const searchFilter = tasks.filter(function (task) {
+    task = task.title.toLowerCase();
+    return task.includes(searchKeyword);
+  });
+  renderTasks(searchFilter);
+};
+searchInput.addEventListener("keyup", filterTasks);

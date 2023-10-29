@@ -18,11 +18,12 @@
     <aside class="col-md-4">
         <div class="d-flex align-items-end me-5 ms-3 pt-0 pb-3 border-bottom">
             <i class="bi bi-person-circle text-secondary"></i>
+            <span class="username"></span>
         </div>
         <nav>
             <ul class="mx-0 px-0">
-                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between align-items-center" id="import"><button class="nav-link d-flex align-items-end"><i class="bi bi-star pe-2 blue" id = "importIcon"></i>Important</button><span id="count-important" class="pe-4"></span></li>
-                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between align-items-center" id="myDay">  <button class="nav-link d-flex align-items-end"><i class="bi bi-brightness-high pe-2 blue" id="dayIcon"></i>My Day</button><span id="count-Tasks" class="pe-4"></span></li>
+                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between align-items-center" id="import"><button class="nav-link d-flex align-items-end"><i class="bi bi-star pe-2 blue"></i>Important</button><span id="count-important" class="pe-4 text-secondary"></span></li>
+                <li  class="list-group-item h5 hover-li cursor-pointer ps-3 py-3 my-3 d-flex justify-content-between align-items-center" id="my-day">  <button class="nav-link d-flex align-items-end"><i class="bi bi-brightness-high pe-2 blue"></i>My Day</button><span id="count-Tasks" class="pe-4 text-secondary"></span></li>
                 <li class="list-group-item ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-star pe-2"></i>Important</a></li>
                 <li class="list-group-item ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-calendar4-week pe-2"></i>Planned</a></li>
                 <li class="list-group-item  ps-3 py-3 h5">  <a href="#" class="nav-link d-flex align-items-end disabled text-secondary"><i class="bi bi-house-door"></i>Tasks</a></li>
@@ -32,10 +33,13 @@
         </nav>
     </aside>
     <section class="col-md-8 border-start">
-    <header class="d-flex justify-content-between ps-3 pt-5">
-        <h1>my day<Date class="d-block">date<Date></h1>
-        <form  class="search mb-3" id="search-bar">
-            <input type="search" placeholder="Type Here..." name="q" class="search__input text-light" id="searchInput">
+    <header class="d-flex justify-content-between ps-3 pt-5 align-items-end">
+        <div>
+            <h1 class="text-light pt-5 heading">My Day</h1>
+            <Date class="d-block text-light date pt-3 pb-3 h3"></Date>
+        </div>
+        <form  class="search mb-4" id="search-bar">
+            <input type="search" placeholder="Type Here..." name="q" class="search__input text-light" id="search-input">
             <div class="search__button cursor-pointer" id="search-button">
                 <i class="bi bi-search search__icon text-light d-flex align-items-center pe-0"></i>
             </div>
