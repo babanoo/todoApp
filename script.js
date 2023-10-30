@@ -123,17 +123,17 @@ function renderTasks(tasks) {
     todoContainer.appendChild(startButton);
     startButton.className = "bi bi-star border-0 bg-body";
     if (task.important === true) {
-      startButton.classList.replace("bi-star", "bi-star-fill");
-      startButton.classList.add("text-primary");
+      startButton.classList.remove("bi-star");
+      startButton.classList.add("bi-star-fill", "text-primary");
     }
     startButton.addEventListener("click", (e) => {
       task.important = !task.important;
       if (task.important === true) {
-        e.target.classList.replace("bi-star", "bi-star-fill");
-        e.target.classList.add("text-primary");
+        e.target.classList.remove("bi-star");
+        e.target.classList.add("bi-star-fill", "text-primary");
       } else if (task.important === false) {
-        e.target.classList.replace("bi-star-fill", "bi-star");
-        e.target.classList.remove("text-primary");
+        e.target.classList.remove("bi-star-fill", "text-primary");
+        e.target.classList.add("bi-star");
       }
       addDataToLocalStorage(tasks);
       countImportant.textContent = tasks.filter(
@@ -165,14 +165,16 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
+  addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
-  const showTasks = tasks.filter((task) => task);
+  const showTasks = tasks.filter((task) => task.title);
   heading.textContent = "My Day";
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(showTasks);
+  addDataToLocalStorage(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
