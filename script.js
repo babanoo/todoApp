@@ -155,6 +155,7 @@ function createNewTask(taskText) {
   addDataToLocalStorage(tasks);
   saveCountTask();
 }
+
 important.addEventListener("click", (e) => {
   const importantTasks = tasks.filter((task) => task.important === true);
   heading.textContent = "Important";
@@ -165,6 +166,7 @@ important.addEventListener("click", (e) => {
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
 });
+
 day.addEventListener("click", (e) => {
   const showTasks = tasks.filter((task) => task);
   heading.textContent = "My Day";
@@ -172,6 +174,7 @@ day.addEventListener("click", (e) => {
   e.target.classList.add("active", "text-bg-light");
   renderTasks(showTasks);
 });
+
 tasksWrapper.addEventListener("click", (e) => {
   if (e.target.classList.contains("bi-trash")) {
     const confirmDelete = confirm("are you sure");
@@ -214,7 +217,7 @@ toggleSearch = (search, button) => {
   const searchBar = document.querySelector("#search-bar"),
     searchButton = document.querySelector("#search-button");
   searchButton.addEventListener("click", () => {
-    // We add the show-search class, so that the search bar expands
+    //add the show-search class, so that the search bar expands
     searchBar.classList.add("show-search");
     searchInput.focus();
     searchInput.addEventListener("blur", () => {
