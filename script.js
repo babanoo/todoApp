@@ -92,6 +92,13 @@ function CountImportantTask() {
   addDataToLocalStorage(tasks);
 }
 CountImportantTask();
+function filterHeading() {
+  if (heading.textContent == "My Day") {
+    renderTasks(tasks.filter((task) => task.title));
+  } else if (heading.textContent == "Important") {
+    renderTasks(tasks.filter((task) => task.important));
+  }
+}
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
@@ -140,15 +147,12 @@ function renderTasks(tasks) {
       countImportant.textContent = tasks.filter(
         (task) => task.important
       ).length;
-      if (heading.textContent == "My Day") {
-        renderTasks(tasks.filter((task) => task.title));
-      } else if (heading.textContent == "Important") {
-        renderTasks(tasks.filter((task) => task.important));
-      }
+      filterHeading();
     });
     tasksWrapper.prepend(todoContainer);
   });
 }
+
 function createNewTask(taskText) {
   const newTask = {
     id: Date.now(),
@@ -160,11 +164,7 @@ function createNewTask(taskText) {
   renderTasks(tasks);
   addDataToLocalStorage(tasks);
   saveCountTask();
-  if (heading.textContent == "My Day") {
-    renderTasks(tasks.filter((task) => task.title));
-  } else if (heading.textContent == "Important") {
-    renderTasks(tasks.filter((task) => task.important));
-  }
+  filterHeading();
 }
 
 important.addEventListener("click", (e) => {
