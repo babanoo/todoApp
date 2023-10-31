@@ -37,6 +37,21 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
 renderTasks(tasks);
 getDataFromLocalStorage();
 
+window.addEventListener("load", () => {
+  if (localStorage.getItem("name")) {
+    userName.textContent = localStorage.getItem("name");
+  } else {
+    const promptName = prompt("Please enter your name");
+    if (!promptName.trim()) {
+      alert("😮 Username cannot be blank!");
+      location.reload();
+    } else {
+      userName.textContent = promptName;
+      localStorage.setItem("name", promptName);
+    }
+  }
+});
+
 const days = [
   "Sunday",
   "Monday",
@@ -63,21 +78,6 @@ const months = [
 date.textContent = `${days[currentDate.getDay()]}, ${
   months[currentDate.getMonth()]
 } ${currentDate.getDate()}`;
-
-window.addEventListener("load", () => {
-  if (localStorage.getItem("name")) {
-    userName.textContent = localStorage.getItem("name");
-  } else {
-    const promptName = prompt("Please enter your name");
-    if (!promptName.trim()) {
-      alert("😮 Username cannot be blank!");
-      location.reload();
-    } else {
-      userName.textContent = promptName;
-      localStorage.setItem("name", promptName);
-    }
-  }
-});
 
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
