@@ -36,7 +36,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
 ];
 renderTasks(tasks);
 getDataFromLocalStorage();
-
+/*=============== Username JS ===============*/
 window.addEventListener("load", () => {
   if (localStorage.getItem("name")) {
     userName.textContent = localStorage.getItem("name");
@@ -51,7 +51,7 @@ window.addEventListener("load", () => {
     }
   }
 });
-
+/*=============== Header date JS ===============*/
 const days = [
   "Sunday",
   "Monday",
@@ -79,6 +79,7 @@ date.textContent = `${days[currentDate.getDay()]}, ${
   months[currentDate.getMonth()]
 } ${currentDate.getDate()}`;
 
+/*=============== Tasks JS ===============*/
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
   addDataToLocalStorage(tasks);
