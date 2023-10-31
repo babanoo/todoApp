@@ -170,6 +170,7 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
+  addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
@@ -178,6 +179,7 @@ day.addEventListener("click", (e) => {
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(showTasks);
+  addDataToLocalStorage(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
