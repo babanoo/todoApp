@@ -154,8 +154,8 @@ function createNewTask(taskText) {
   renderTasks(tasks);
   addDataToLocalStorage(tasks);
   saveCountTask();
-  if (importantTasks) {
-    newTask.innerHTML = "";
+  if (important) {
+    tasksWrapper.innerHTML = "";
   }
 }
 
@@ -212,6 +212,7 @@ function removeTask(taskId) {
   tasks = tasks.filter((task) => task.id != taskId);
   addDataToLocalStorage(tasks);
   saveCountTask();
+  CountImportantTask();
 }
 
 /*=============== SEARCH BAR JS ===============*/
