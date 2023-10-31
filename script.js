@@ -7,6 +7,7 @@ const day = document.querySelector("#my-day");
 const date = document.querySelector(".date");
 const userName = document.querySelector(".username");
 const heading = document.querySelector(".heading");
+const searchInput = document.querySelector("#search-input");
 const currentDate = new Date();
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [
   {
@@ -190,7 +191,7 @@ day.addEventListener("click", (e) => {
 
 tasksWrapper.addEventListener("click", (e) => {
   if (e.target.classList.contains("bi-trash")) {
-    const confirmDelete = confirm("are you sure");
+    const confirmDelete = confirm("are you sure you want to delete this task?");
     if (confirmDelete) {
       e.target.parentElement.remove();
       removeTask(e.target.parentElement.getAttribute("data-id"));
@@ -242,7 +243,6 @@ toggleSearch = (search, button) => {
   });
 };
 toggleSearch("search-bar", "search-button");
-const searchInput = document.querySelector("#search-input");
 let filterTasks = function (event) {
   let searchKeyword = searchInput.value.toLowerCase();
   const searchFilter = tasks.filter(function (task) {
