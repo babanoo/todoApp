@@ -155,7 +155,7 @@ function createNewTask(taskText) {
   addDataToLocalStorage(tasks);
   saveCountTask();
   if (important) {
-    tasksWrapper.innerHTML = "";
+    renderTasks(tasks.filter((task) => task.important === true));
   }
 }
 
