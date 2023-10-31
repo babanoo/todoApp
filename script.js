@@ -154,8 +154,10 @@ function createNewTask(taskText) {
   renderTasks(tasks);
   addDataToLocalStorage(tasks);
   saveCountTask();
-  if (important) {
-    renderTasks(tasks.filter((task) => task.important === true));
+  if (heading.textContent == "My Day") {
+    renderTasks(tasks.filter((task) => task.title));
+  } else if (heading.textContent == "Important") {
+    renderTasks(tasks.filter((task) => task.important));
   }
 }
 
