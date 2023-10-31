@@ -18,8 +18,6 @@ li {
  }
  .tasks-wrapper {
   max-height: 345px;
-  overflow-y: auto;
-  overflow-x: hidden;
  }
  .cursor-pointer {
   cursor: pointer;

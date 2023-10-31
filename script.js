@@ -70,7 +70,7 @@ window.addEventListener("load", () => {
   } else {
     const promptName = prompt("Please enter your name");
     if (!promptName.trim()) {
-      alert("Username cannot be blank!");
+      alert("😮 Username cannot be blank!");
       location.reload();
     } else {
       userName.textContent = promptName;
@@ -154,6 +154,9 @@ function createNewTask(taskText) {
   renderTasks(tasks);
   addDataToLocalStorage(tasks);
   saveCountTask();
+  if (importantTasks) {
+    newTask.innerHTML = "";
+  }
 }
 
 important.addEventListener("click", (e) => {
@@ -165,7 +168,6 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
-  addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
@@ -174,7 +176,6 @@ day.addEventListener("click", (e) => {
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(showTasks);
-  addDataToLocalStorage(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
@@ -192,7 +193,7 @@ addTaskElement.addEventListener("click", (e) => {
   if (promptMsgTask.trim() !== "") {
     createNewTask(promptMsgTask);
   } else {
-    alert("Please add some task!");
+    alert("😮 Task cannot be empty!");
     return false;
   }
 });
