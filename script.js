@@ -139,6 +139,11 @@ function renderTasks(tasks) {
       countImportant.textContent = tasks.filter(
         (task) => task.important
       ).length;
+      if (heading.textContent == "My Day") {
+        renderTasks(tasks.filter((task) => task.title));
+      } else if (heading.textContent == "Important") {
+        renderTasks(tasks.filter((task) => task.important));
+      }
     });
     tasksWrapper.prepend(todoContainer);
   });
