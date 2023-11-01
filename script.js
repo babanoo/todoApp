@@ -114,9 +114,9 @@ function renderTasks(tasks) {
     taskList.addEventListener("click", (e) => {
       task.completed = !task.completed;
       if (task.completed) {
-        taskList.classList.add("done");
+        e.target.classList.add("done");
       } else {
-        taskList.classList.remove("done");
+        e.target.classList.remove("done");
       }
       addDataToLocalStorage(tasks);
     });
@@ -139,11 +139,11 @@ function renderTasks(tasks) {
     startButton.addEventListener("click", (e) => {
       task.important = !task.important;
       if (task.important === true) {
-        startButton.classList.remove("bi-star");
-        startButton.classList.add("bi-star-fill", "text-primary");
+        e.target.classList.remove("bi-star");
+        e.target.classList.add("bi-star-fill", "text-primary");
       } else {
-        startButton.classList.remove("bi-star-fill", "text-primary");
-        startButton.classList.add("bi-star");
+        e.target.classList.remove("bi-star-fill", "text-primary");
+        e.target.classList.add("bi-star");
       }
       addDataToLocalStorage(tasks);
       countImportant.textContent = tasks.filter(
