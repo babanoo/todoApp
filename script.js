@@ -103,34 +103,34 @@ function displayTasks() {
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
-    const todoContainer = document.createElement("div");
-    todoContainer.className =
+    const taskList = document.createElement("div");
+    taskList.className =
       "task py-3 d-flex align-items-start border-bottom cursor-pointer position-relative";
     if (task.completed) {
-      todoContainer.classList.add("done");
+      taskList.classList.add("done");
     } else {
-      todoContainer.classList.remove("done");
+      taskList.classList.remove("done");
     }
-    todoContainer.addEventListener("click", (e) => {
+    taskList.addEventListener("click", (e) => {
       task.completed = !task.completed;
       if (task.completed) {
-        todoContainer.classList.add("done");
+        taskList.classList.add("done");
       } else {
-        todoContainer.classList.remove("done");
+        taskList.classList.remove("done");
       }
       addDataToLocalStorage(tasks);
     });
 
-    todoContainer.setAttribute("data-id", task.id);
+    taskList.setAttribute("data-id", task.id);
     const taskContent = document.createElement("p");
     taskContent.className = "flex-grow-1 ps-5 content";
-    todoContainer.appendChild(taskContent);
+    taskList.appendChild(taskContent);
     taskContent.appendChild(document.createTextNode(task.title));
     const trashButton = document.createElement("button");
     trashButton.className = "bi bi-trash border-0 bg-body";
-    todoContainer.appendChild(trashButton);
+    taskList.appendChild(trashButton);
     const startButton = document.createElement("button");
-    todoContainer.appendChild(startButton);
+    taskList.appendChild(startButton);
     startButton.className = "bi bi-star border-0 bg-body";
     if (task.important === true) {
       startButton.classList.remove("bi-star");
@@ -151,7 +151,7 @@ function renderTasks(tasks) {
       ).length;
       displayTasks();
     });
-    tasksWrapper.prepend(todoContainer);
+    tasksWrapper.prepend(taskList);
   });
 }
 function createNewTask(taskText) {
