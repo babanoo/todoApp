@@ -109,6 +109,16 @@ function renderTasks(tasks) {
     if (task.completed) {
       taskList.classList.add("done");
     }
+    taskList.addEventListener("click", () => {
+      //const task = tasks.filter((task) => task.completed === true);
+      task.completed = !task.completed;
+      if (task.completed) {
+        taskList.classList.add("done");
+      } else {
+        taskList.classList.remove("done");
+      }
+      addDataToLocalStorage(tasks);
+    });
     taskList.setAttribute("data-id", task.id);
     const taskContent = document.createElement("p");
     taskContent.className = "flex-grow-1 ps-5 content";
@@ -213,7 +223,9 @@ function removeTask(taskId) {
   saveCountTask();
   CountImportantTask();
 }
+//function toggleCompleted() {
 
+//}
 /*=============== SEARCH BAR JS ===============*/
 
 toggleSearch = (search, button) => {
