@@ -93,7 +93,7 @@ function CountImportantTask() {
   addDataToLocalStorage(tasks);
 }
 CountImportantTask();
-function filterHeading() {
+function displayTasks() {
   if (heading.textContent == "My Day") {
     renderTasks(tasks.filter((task) => task.title));
   } else if (heading.textContent == "Important") {
@@ -111,7 +111,7 @@ function renderTasks(tasks) {
     } else {
       todoContainer.classList.remove("done");
     }
-    todoContainer.addEventListener("click", () => {
+    todoContainer.addEventListener("click", (e) => {
       task.completed = !task.completed;
       if (task.completed) {
         todoContainer.classList.add("done");
@@ -120,6 +120,7 @@ function renderTasks(tasks) {
       }
       addDataToLocalStorage(tasks);
     });
+
     todoContainer.setAttribute("data-id", task.id);
     const taskContent = document.createElement("p");
     taskContent.className = "flex-grow-1 ps-5 content";
@@ -138,17 +139,17 @@ function renderTasks(tasks) {
     startButton.addEventListener("click", (e) => {
       task.important = !task.important;
       if (task.important === true) {
-        e.target.classList.remove("bi-star");
-        e.target.classList.add("bi-star-fill", "text-primary");
-      } else if (task.important === false) {
-        e.target.classList.remove("bi-star-fill", "text-primary");
-        e.target.classList.add("bi-star");
+        startButton.classList.remove("bi-star");
+        startButton.classList.add("bi-star-fill", "text-primary");
+      } else {
+        startButton.classList.remove("bi-star-fill", "text-primary");
+        startButton.classList.add("bi-star");
       }
       addDataToLocalStorage(tasks);
       countImportant.textContent = tasks.filter(
         (task) => task.important
       ).length;
-      filterHeading();
+      displayTasks();
     });
     tasksWrapper.prepend(todoContainer);
   });
@@ -165,7 +166,7 @@ function createNewTask(taskText) {
   renderTasks(tasks);
   addDataToLocalStorage(tasks);
   saveCountTask();
-  filterHeading();
+  displayTasks();
 }
 
 important.addEventListener("click", (e) => {
