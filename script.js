@@ -154,7 +154,6 @@ function renderTasks(tasks) {
     tasksWrapper.prepend(todoContainer);
   });
 }
-
 function createNewTask(taskText) {
   const newTask = {
     id: Date.now(),
