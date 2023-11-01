@@ -108,19 +108,7 @@ function renderTasks(tasks) {
       "task py-3 d-flex align-items-start border-bottom cursor-pointer position-relative";
     if (task.completed) {
       taskList.classList.add("done");
-    } else {
-      taskList.classList.remove("done");
     }
-    taskList.addEventListener("click", (e) => {
-      task.completed = !task.completed;
-      if (task.completed) {
-        e.target.classList.add("done");
-      } else {
-        e.target.classList.remove("done");
-      }
-      addDataToLocalStorage(tasks);
-    });
-
     taskList.setAttribute("data-id", task.id);
     const taskContent = document.createElement("p");
     taskContent.className = "flex-grow-1 ps-5 content";
