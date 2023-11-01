@@ -137,13 +137,16 @@ function renderTasks(tasks) {
       startButton.classList.add("bi-star-fill", "text-primary");
     }
     startButton.addEventListener("click", (e) => {
-      task.important = !task.important;
-      if (task.important === true) {
-        e.target.classList.remove("bi-star");
-        e.target.classList.add("bi-star-fill", "text-primary");
-      } else {
-        e.target.classList.remove("bi-star-fill", "text-primary");
-        e.target.classList.add("bi-star");
+      const taskId = e.target.parentElement.getAttribute("data-id");
+      if (task.id == taskId) {
+        task.important = !task.important;
+        if (task.important === true) {
+          e.target.classList.remove("bi-star");
+          e.target.classList.add("bi-star-fill", "text-primary");
+        } else {
+          e.target.classList.remove("bi-star-fill", "text-primary");
+          e.target.classList.add("bi-star");
+        }
       }
       addDataToLocalStorage(tasks);
       countImportant.textContent = tasks.filter(
