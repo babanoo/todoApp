@@ -181,6 +181,7 @@ important.addEventListener("click", (e) => {
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
   addDataToLocalStorage(tasks);
+  filterTasks();
 });
 
 day.addEventListener("click", (e) => {
@@ -190,6 +191,8 @@ day.addEventListener("click", (e) => {
   e.target.classList.add("active", "text-bg-light");
   renderTasks(showTasks);
   addDataToLocalStorage(tasks);
+  filterTasks();
+  saveCountTask();
 });
 
 tasksWrapper.addEventListener("click", (e) => {
