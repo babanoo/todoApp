@@ -108,6 +108,23 @@ let filterTasks = function (event) {
 searchInput.addEventListener("keyup", filterTasks);
 
 /*=============== Tasks JS ===============*/
+important.addEventListener("click", (e) => {
+  heading.textContent = "Important";
+  date.textContent = `${days[currentDate.getDay()]}, ${
+    months[currentDate.getMonth()]
+  } ${currentDate.getDate()}`;
+  day.classList.remove("active", "text-bg-light");
+  e.target.classList.add("active", "text-bg-light");
+  displayTasks();
+});
+
+day.addEventListener("click", (e) => {
+  heading.textContent = "My Day";
+  important.classList.remove("active", "text-bg-light");
+  e.target.classList.add("active", "text-bg-light");
+  displayTasks();
+});
+
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
   renderTasks(tasks);
@@ -199,23 +216,6 @@ function createNewTask(taskText) {
   displayTasks();
   addDataToLocalStorage(tasks);
 }
-
-important.addEventListener("click", (e) => {
-  heading.textContent = "Important";
-  date.textContent = `${days[currentDate.getDay()]}, ${
-    months[currentDate.getMonth()]
-  } ${currentDate.getDate()}`;
-  day.classList.remove("active", "text-bg-light");
-  e.target.classList.add("active", "text-bg-light");
-  displayTasks();
-});
-
-day.addEventListener("click", (e) => {
-  heading.textContent = "My Day";
-  important.classList.remove("active", "text-bg-light");
-  e.target.classList.add("active", "text-bg-light");
-  displayTasks();
-});
 
 tasksWrapper.addEventListener("click", (e) => {
   if (e.target.classList.contains("bi-trash")) {
