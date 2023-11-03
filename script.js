@@ -110,14 +110,14 @@ searchInput.addEventListener("keyup", filterTasks);
 /*=============== Tasks JS ===============*/
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
-  addDataToLocalStorage(tasks);
+  // addDataToLocalStorage(tasks);
 }
 saveCountTask();
 function CountImportantTask() {
   countImportant.textContent = tasks.filter(
     (task) => task.important === true
   ).length;
-  addDataToLocalStorage(tasks);
+  // addDataToLocalStorage(tasks);
 }
 CountImportantTask();
 function displayTasks() {
@@ -198,21 +198,20 @@ function createNewTask(taskText) {
 }
 
 important.addEventListener("click", (e) => {
-  const importantTasks = tasks.filter((task) => task.important === true);
   heading.textContent = "Important";
   date.textContent = `${days[currentDate.getDay()]}, ${
     months[currentDate.getMonth()]
   } ${currentDate.getDate()}`;
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  renderTasks(importantTasks);
+  displayTasks();
 });
 
 day.addEventListener("click", (e) => {
   heading.textContent = "My Day";
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  renderTasks(tasks);
+  displayTasks();
 });
 
 tasksWrapper.addEventListener("click", (e) => {
