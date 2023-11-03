@@ -149,7 +149,6 @@ function renderTasks(tasks) {
           e.target.classList.add("bi-star");
         }
       }
-      addDataToLocalStorage(tasks);
       countImportant.textContent = tasks.filter(
         (task) => task.important
       ).length;
@@ -180,6 +179,7 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
+  addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
@@ -187,6 +187,7 @@ day.addEventListener("click", (e) => {
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(tasks);
+  addDataToLocalStorage(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
