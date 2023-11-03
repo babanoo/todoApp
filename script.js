@@ -80,6 +80,33 @@ date.textContent = `${days[currentDate.getDay()]}, ${
   months[currentDate.getMonth()]
 } ${currentDate.getDate()}`;
 
+/*=============== SEARCH BAR JS ===============*/
+toggleSearch = (search, button) => {
+  const searchBar = document.querySelector("#search-bar"),
+    searchButton = document.querySelector("#search-button");
+  searchButton.addEventListener("click", () => {
+    //add the show-search class, so that the search bar expands
+    searchBar.classList.add("show-search");
+    searchInput.focus();
+    searchInput.addEventListener("blur", () => {
+      if (searchInput.value === "") {
+        searchBar.classList.remove("show-search");
+      }
+    });
+  });
+};
+toggleSearch("search-bar", "search-button");
+
+let filterTasks = function (event) {
+  let searchKeyword = searchInput.value.toLowerCase();
+  const searchFilter = tasks.filter(function (task) {
+    task = task.title.toLowerCase();
+    return task.includes(searchKeyword);
+  });
+  renderTasks(searchFilter);
+};
+searchInput.addEventListener("keyup", filterTasks);
+
 /*=============== Tasks JS ===============*/
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
@@ -226,30 +253,3 @@ function removeTask(taskId) {
   saveCountTask();
   CountImportantTask();
 }
-
-/*=============== SEARCH BAR JS ===============*/
-toggleSearch = (search, button) => {
-  const searchBar = document.querySelector("#search-bar"),
-    searchButton = document.querySelector("#search-button");
-  searchButton.addEventListener("click", () => {
-    //add the show-search class, so that the search bar expands
-    searchBar.classList.add("show-search");
-    searchInput.focus();
-    searchInput.addEventListener("blur", () => {
-      if (searchInput.value === "") {
-        searchBar.classList.remove("show-search");
-      }
-    });
-  });
-};
-toggleSearch("search-bar", "search-button");
-
-let filterTasks = function (event) {
-  let searchKeyword = searchInput.value.toLowerCase();
-  const searchFilter = tasks.filter(function (task) {
-    task = task.title.toLowerCase();
-    return task.includes(searchKeyword);
-  });
-  renderTasks(searchFilter);
-};
-searchInput.addEventListener("keyup", filterTasks);
