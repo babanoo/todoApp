@@ -180,14 +180,12 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
-  //addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
   heading.textContent = "My Day";
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  //addDataToLocalStorage(tasks);
   renderTasks(tasks);
 });
 
@@ -214,6 +212,7 @@ addTaskElement.addEventListener("click", (e) => {
 function addDataToLocalStorage(tasks) {
   window.localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
 function getDataFromLocalStorage() {
   let data = window.localStorage.getItem("tasks");
   if (data) {
@@ -221,6 +220,7 @@ function getDataFromLocalStorage() {
     renderTasks(tasks);
   }
 }
+
 function removeTask(taskId) {
   tasks = tasks.filter((task) => task.id != taskId);
   addDataToLocalStorage(tasks);
@@ -245,6 +245,7 @@ toggleSearch = (search, button) => {
   });
 };
 toggleSearch("search-bar", "search-button");
+
 let filterTasks = function (event) {
   let searchKeyword = searchInput.value.toLowerCase();
   const searchFilter = tasks.filter(function (task) {
