@@ -136,7 +136,6 @@ function CountImportantTask() {
   countImportant.textContent = tasks.filter(
     (task) => task.important === true
   ).length;
-  renderTasks(tasks);
 }
 CountImportantTask();
 
@@ -203,6 +202,7 @@ function renderTasks(tasks) {
     });
   });
 }
+
 function createNewTask(taskText) {
   const newTask = {
     id: Date.now(),
@@ -254,4 +254,5 @@ function removeTask(taskId) {
   addDataToLocalStorage(tasks);
   saveCountTask();
   CountImportantTask();
+  displayTasks();
 }
