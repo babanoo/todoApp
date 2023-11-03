@@ -116,6 +116,7 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   displayTasks();
+  //saveCountTask();
 });
 
 day.addEventListener("click", (e) => {
@@ -135,8 +136,7 @@ function CountImportantTask() {
   countImportant.textContent = tasks.filter(
     (task) => task.important === true
   ).length;
-
-  // addDataToLocalStorage(tasks);
+  renderTasks(tasks);
 }
 CountImportantTask();
 
