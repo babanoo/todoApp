@@ -136,6 +136,7 @@ function renderTasks(tasks) {
       startButton.classList.remove("bi-star");
       startButton.classList.add("bi-star-fill", "text-primary");
     }
+    tasksWrapper.prepend(taskList);
     startButton.addEventListener("click", (e) => {
       const taskId = e.target.parentElement.getAttribute("data-id");
       if (task.id == taskId) {
@@ -154,7 +155,6 @@ function renderTasks(tasks) {
       ).length;
       displayTasks();
     });
-    tasksWrapper.prepend(taskList);
   });
 }
 function createNewTask(taskText) {
@@ -180,19 +180,15 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
-  addDataToLocalStorage(tasks);
-  filterTasks();
+  //addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
-  const showTasks = tasks.filter((task) => task.title);
   heading.textContent = "My Day";
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  renderTasks(showTasks);
-  addDataToLocalStorage(tasks);
-  filterTasks();
-  saveCountTask();
+  //addDataToLocalStorage(tasks);
+  renderTasks(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
@@ -231,9 +227,7 @@ function removeTask(taskId) {
   saveCountTask();
   CountImportantTask();
 }
-//function toggleCompleted() {
 
-//}
 /*=============== SEARCH BAR JS ===============*/
 
 toggleSearch = (search, button) => {
