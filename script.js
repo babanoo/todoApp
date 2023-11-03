@@ -95,7 +95,7 @@ function CountImportantTask() {
 CountImportantTask();
 function displayTasks() {
   if (heading.textContent == "My Day") {
-    renderTasks(tasks.filter((task) => task.title));
+    renderTasks(tasks);
   } else if (heading.textContent == "Important") {
     renderTasks(tasks.filter((task) => task.important));
   }
