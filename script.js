@@ -110,21 +110,24 @@ searchInput.addEventListener("keyup", filterTasks);
 /*=============== Tasks JS ===============*/
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
-  // addDataToLocalStorage(tasks);
+  renderTasks(tasks);
 }
 saveCountTask();
+
 function CountImportantTask() {
   countImportant.textContent = tasks.filter(
     (task) => task.important === true
   ).length;
+
   // addDataToLocalStorage(tasks);
 }
 CountImportantTask();
+
 function displayTasks() {
-  if (heading.textContent == "My Day") {
-    renderTasks(tasks);
-  } else if (heading.textContent == "Important") {
+  if (heading.textContent == "Important") {
     renderTasks(tasks.filter((task) => task.important));
+  } else if (heading.textContent == "My Day") {
+    renderTasks(tasks);
   }
 }
 function renderTasks(tasks) {
@@ -192,9 +195,9 @@ function createNewTask(taskText) {
   };
   tasks.push(newTask);
   renderTasks(tasks);
-  addDataToLocalStorage(tasks);
   saveCountTask();
   displayTasks();
+  addDataToLocalStorage(tasks);
 }
 
 important.addEventListener("click", (e) => {
