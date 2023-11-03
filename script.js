@@ -179,7 +179,6 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(importantTasks);
-  addDataToLocalStorage(tasks);
 });
 
 day.addEventListener("click", (e) => {
@@ -187,7 +186,6 @@ day.addEventListener("click", (e) => {
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   renderTasks(tasks);
-  addDataToLocalStorage(tasks);
 });
 
 tasksWrapper.addEventListener("click", (e) => {
@@ -230,7 +228,6 @@ function removeTask(taskId) {
 }
 
 /*=============== SEARCH BAR JS ===============*/
-
 toggleSearch = (search, button) => {
   const searchBar = document.querySelector("#search-bar"),
     searchButton = document.querySelector("#search-button");
