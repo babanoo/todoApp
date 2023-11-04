@@ -110,9 +110,6 @@ searchInput.addEventListener("keyup", filterTasks);
 /*=============== Tasks JS ===============*/
 important.addEventListener("click", (e) => {
   heading.textContent = "Important";
-  date.textContent = `${days[currentDate.getDay()]}, ${
-    months[currentDate.getMonth()]
-  } ${currentDate.getDate()}`;
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   displayTasks();
