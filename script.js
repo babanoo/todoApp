@@ -116,7 +116,6 @@ important.addEventListener("click", (e) => {
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
   displayTasks();
-  //saveCountTask();
 });
 
 day.addEventListener("click", (e) => {
@@ -146,6 +145,8 @@ function displayTasks() {
     renderTasks(tasks);
   }
 }
+displayTasks();
+
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
