@@ -76,6 +76,7 @@ li {
   overflow: hidden;
   transition: width 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
+
 .search__input {
   border: none;
   outline: none;

@@ -1,3 +1,4 @@
+//"use strict";
 const addTaskElement = document.querySelector(".add-task");
 const tasksWrapper = document.querySelector(".tasks-wrapper");
 const countImportant = document.querySelector("#count-important");
@@ -9,7 +10,7 @@ const userName = document.querySelector(".username");
 const heading = document.querySelector(".heading");
 const searchInput = document.querySelector("#search-input");
 const currentDate = new Date();
-let tasks = JSON.parse(localStorage.getItem("tasks")) || [
+let tasks = JSON.parse(localStorage.getItem("tasksList")) || [
   {
     id: "t4",
     title: "task four",
@@ -37,6 +38,7 @@ let tasks = JSON.parse(localStorage.getItem("tasks")) || [
 ];
 renderTasks(tasks);
 getDataFromLocalStorage();
+
 /*=============== Username JS ===============*/
 window.addEventListener("load", () => {
   if (localStorage.getItem("name")) {
@@ -97,16 +99,6 @@ toggleSearch = (search, button) => {
 };
 toggleSearch("search-bar", "search-button");
 
-let filterTasks = function (event) {
-  let searchKeyword = searchInput.value.toLowerCase();
-  const searchFilter = tasks.filter(function (task) {
-    task = task.title.toLowerCase();
-    return task.includes(searchKeyword);
-  });
-  renderTasks(searchFilter);
-};
-searchInput.addEventListener("keyup", filterTasks);
-
 /*=============== Tasks JS ===============*/
 important.addEventListener("click", (e) => {
   heading.textContent = "Important";
@@ -124,7 +116,6 @@ day.addEventListener("click", (e) => {
 
 function saveCountTask() {
   countTasks.textContent = tasks.filter((task) => task).length;
-  renderTasks(tasks);
 }
 saveCountTask();
 
@@ -136,14 +127,23 @@ function CountImportantTask() {
 CountImportantTask();
 
 function displayTasks() {
-  if (heading.textContent == "Important") {
-    renderTasks(tasks.filter((task) => task.important));
-  } else if (heading.textContent == "My Day") {
-    renderTasks(tasks);
+  let filteredArray = tasks.filter((task) =>
+    task.title
+      .toLocaleLowerCase()
+      .includes(searchInput.value.trim().toLocaleLowerCase())
+  );
+  if (filteredArray.length !== 0) {
+    if (heading.textContent == "My Day") {
+      renderTasks(filteredArray);
+    } else if (heading.textContent == "Important") {
+      renderTasks(filteredArray.filter((task) => task.important));
+    }
   }
 }
 displayTasks();
-
+searchInput.addEventListener("input", () => {
+  displayTasks();
+});
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
@@ -180,7 +180,6 @@ function renderTasks(tasks) {
       startButton.classList.remove("bi-star");
       startButton.classList.add("bi-star-fill", "text-primary");
     }
-    tasksWrapper.prepend(taskList);
     startButton.addEventListener("click", (e) => {
       const taskId = e.target.parentElement.getAttribute("data-id");
       if (task.id == taskId) {
@@ -193,11 +192,10 @@ function renderTasks(tasks) {
           e.target.classList.add("bi-star");
         }
       }
-      countImportant.textContent = tasks.filter(
-        (task) => task.important
-      ).length;
+      CountImportantTask();
       displayTasks();
     });
+    tasksWrapper.prepend(taskList);
   });
 }
 
@@ -236,11 +234,11 @@ addTaskElement.addEventListener("click", (e) => {
 });
 
 function addDataToLocalStorage(tasks) {
-  window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  window.localStorage.setItem("tasksList", JSON.stringify(tasks));
 }
 
 function getDataFromLocalStorage() {
-  let data = window.localStorage.getItem("tasks");
+  let data = window.localStorage.getItem("tasksList");
   if (data) {
     let tasks = JSON.parse(data);
     renderTasks(tasks);
