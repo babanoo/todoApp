@@ -132,12 +132,10 @@ function displayTasks() {
       .toLocaleLowerCase()
       .includes(searchInput.value.trim().toLocaleLowerCase())
   );
-  if (filteredArray.length !== 0) {
-    if (heading.textContent == "My Day") {
-      renderTasks(filteredArray);
-    } else if (heading.textContent == "Important") {
-      renderTasks(filteredArray.filter((task) => task.important));
-    }
+  if (filteredArray.length !== 0 && heading.textContent == "My Day") {
+    renderTasks(filteredArray);
+  } else if (heading.textContent == "Important") {
+    renderTasks(filteredArray.filter((task) => task.important));
   }
 }
 displayTasks();
