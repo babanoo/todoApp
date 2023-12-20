@@ -63,7 +63,7 @@ header {
 
 .hover-li:hover, .active {
  font-weight: bold;
- background-color: #f5f6f8;
+ background-color: rgb(245, 246, 248);
 }
 
 .active .bi {
@@ -96,7 +96,7 @@ header {
   border-radius: 30px;
   padding-left: 14px;
   font-weight: 500;
-  background-color: #43205436;
+  background-color: rgba(67, 32, 84, 0.21);
   opacity: 0;
   pointer-events: none;
   cursor: initial;
