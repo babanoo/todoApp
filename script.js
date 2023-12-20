@@ -36,6 +36,7 @@ let tasks = JSON.parse(localStorage.getItem("tasksList")) || [
     important: false,
   },
 ];
+
 renderTasks(tasks);
 getDataFromLocalStorage();
 
@@ -83,9 +84,9 @@ date.textContent = `${days[currentDate.getDay()]}, ${
 } ${currentDate.getDate()}`;
 
 /*=============== SEARCH BAR JS ===============*/
-toggleSearch = (search, button) => {
-  const searchBar = document.querySelector("#search-bar"),
-    searchButton = document.querySelector("#search-button");
+toggleSearch = () => {
+  const searchBar = document.querySelector("#search-bar");
+  const searchButton = document.querySelector("#search-button");
   searchButton.addEventListener("click", () => {
     //add the show-search class, so that the search bar expands
     searchBar.classList.add("show-search");
@@ -97,51 +98,53 @@ toggleSearch = (search, button) => {
     });
   });
 };
-toggleSearch("search-bar", "search-button");
+toggleSearch();
 
 /*=============== Tasks JS ===============*/
 important.addEventListener("click", (e) => {
   heading.textContent = "Important";
   day.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  displayTasks();
+  filterTask();
 });
 
 day.addEventListener("click", (e) => {
   heading.textContent = "My Day";
   important.classList.remove("active", "text-bg-light");
   e.target.classList.add("active", "text-bg-light");
-  displayTasks();
+  filterTask();
 });
 
 function saveCountTask() {
-  countTasks.textContent = tasks.filter((task) => task).length;
+  countTasks.textContent = tasks.length;
 }
 saveCountTask();
 
-function CountImportantTask() {
+function countImportantTask() {
   countImportant.textContent = tasks.filter(
     (task) => task.important === true
   ).length;
 }
-CountImportantTask();
+countImportantTask();
 
-function displayTasks() {
-  let filteredArray = tasks.filter((task) =>
+function filterTask() {
+  const filteredArray = tasks.filter((task) =>
     task.title
       .toLocaleLowerCase()
       .includes(searchInput.value.trim().toLocaleLowerCase())
   );
-  if (filteredArray.length !== 0 && heading.textContent == "My Day") {
+  if (filteredArray.length > 0 && heading.textContent == "My Day") {
     renderTasks(filteredArray);
   } else if (heading.textContent == "Important") {
     renderTasks(filteredArray.filter((task) => task.important));
   }
 }
-displayTasks();
+
+filterTask();
 searchInput.addEventListener("input", () => {
-  displayTasks();
+  filterTask();
 });
+
 function renderTasks(tasks) {
   tasksWrapper.innerHTML = "";
   tasks.forEach((task) => {
@@ -156,11 +159,7 @@ function renderTasks(tasks) {
       const taskId = e.target.getAttribute("data-id");
       if (task.id == taskId) {
         task.completed = !task.completed;
-        if (task.completed) {
-          taskList.classList.add("done");
-        } else {
-          taskList.classList.remove("done");
-        }
+        taskList.classList.toggle("done");
       }
       addDataToLocalStorage(tasks);
     });
@@ -190,8 +189,8 @@ function renderTasks(tasks) {
           e.target.classList.add("bi-star");
         }
       }
-      CountImportantTask();
-      displayTasks();
+      countImportantTask();
+      filterTask();
     });
     tasksWrapper.prepend(taskList);
   });
@@ -207,7 +206,7 @@ function createNewTask(taskText) {
   tasks.push(newTask);
   renderTasks(tasks);
   saveCountTask();
-  displayTasks();
+  filterTask();
   addDataToLocalStorage(tasks);
 }
 
@@ -247,6 +246,6 @@ function removeTask(taskId) {
   tasks = tasks.filter((task) => task.id != taskId);
   addDataToLocalStorage(tasks);
   saveCountTask();
-  CountImportantTask();
-  displayTasks();
+  countImportantTask();
+  filterTask();
 }

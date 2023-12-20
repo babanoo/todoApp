@@ -4,24 +4,31 @@ body {
   background-size: cover;
   font-family: Poppins;
 }
-header{
+
+header {
  background-image: linear-gradient(to right, #823fa1 , #6248e7);
 }
-input {
+
+.outline-none {
  outline: none;
 }
-li {
+
+.cursor-not-allowed {
   cursor: not-allowed;
 }
+
 .container {
   max-width: 1280px;
  }
+
  .tasks-wrapper {
   max-height: 345px;
  }
+
  .cursor-pointer {
   cursor: pointer;
  }
+
 .hover-li, .active {
    position: relative;
    
@@ -36,10 +43,12 @@ li {
   left: 0;
   right: 100%;
 }
+
  .hover-li:hover:before{
  border-left:4px solid rgb(0, 102, 255);
  transform: scaleY(4);
 }
+
 .active::before {
   position: absolute;
   content: "";
@@ -51,10 +60,12 @@ li {
   border-left:4px solid rgb(0, 102, 255);
   transform: scaleY(4);
 }
+
 .hover-li:hover, .active {
  font-weight: bold;
  background-color: #f5f6f8;
 }
+
 .active .bi {
   background-image: -webkit-linear-gradient;
   background: linear-gradient(to right, #823fa1 , #6248e7);
@@ -82,7 +93,7 @@ li {
   outline: none;
   width: calc(100% - 64px);
   height: 100%;
-  border-radius: 4rem;
+  border-radius: 30px;
   padding-left: 14px;
   font-weight: 500;
   background-color: #43205436;
@@ -106,6 +117,7 @@ li {
   place-items: center;
   transition: transform 0.6s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
+
 .search__icon {
  transition: opacity 0.5s cubic-bezier(0.9, 0, 0.3, 0.9);
 }
@@ -113,13 +125,16 @@ li {
 .show-search {
   width: 400px;
 }
+
 .show-search .search__input {
   opacity: 1;
   pointer-events: initial;
 }
+
 .task:hover .bi-trash {
   color: rgba(255, 0, 0, 0.802);
 }
+
 .done:hover .bi-trash {
   color: rgba(255, 0, 0, 0.802);
 }
@@ -137,10 +152,12 @@ li {
     background-color: rgb(255, 255, 255);
     transform: translateX(-5px);
 }
+
  .done .content {
   text-decoration: line-through;
   color: dimgray;
 }
+
  .done::after {
   content: '';
   position: absolute;
@@ -153,6 +170,7 @@ li {
   height: 13px;
   width: 6px;
 }
+
 .done::before {
    content: "";
     position: absolute;
@@ -170,10 +188,12 @@ li {
   font-size: 25px;
   padding-right: 15px;
 }
+
 .bi-trash {
   color: #fff; 
-  transition: all 0.6s;
+  transition: color 0.6s;
 }
+
 .blue  {
   color: rgb(0, 170, 255);
 }
