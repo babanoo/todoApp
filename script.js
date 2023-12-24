@@ -133,9 +133,9 @@ function filterTask() {
       .toLocaleLowerCase()
       .includes(searchInput.value.trim().toLocaleLowerCase())
   );
-  if (filteredArray.length > 0 && heading.textContent == "My Day") {
+  if (filteredArray.length > 0 && heading.textContent === "My Day") {
     renderTasks(filteredArray);
-  } else if (heading.textContent == "Important") {
+  } else if (heading.textContent === "Important") {
     renderTasks(filteredArray.filter((task) => task.important));
   }
 }
@@ -157,7 +157,7 @@ function renderTasks(tasks) {
     taskList.setAttribute("data-id", task.id);
     taskList.addEventListener("click", (e) => {
       const taskId = e.target.getAttribute("data-id");
-      if (task.id == taskId) {
+      if (task.id === taskId) {
         task.completed = !task.completed;
         taskList.classList.toggle("done");
       }
@@ -179,7 +179,7 @@ function renderTasks(tasks) {
     }
     startButton.addEventListener("click", (e) => {
       const taskId = e.target.parentElement.getAttribute("data-id");
-      if (task.id == taskId) {
+      if (task.id === taskId) {
         task.important = !task.important;
         if (task.important === true) {
           e.target.classList.remove("bi-star");
@@ -243,7 +243,7 @@ function getDataFromLocalStorage() {
 }
 
 function removeTask(taskId) {
-  tasks = tasks.filter((task) => task.id != taskId);
+  tasks = tasks.filter((task) => task.id !== taskId);
   addDataToLocalStorage(tasks);
   saveCountTask();
   countImportantTask();
